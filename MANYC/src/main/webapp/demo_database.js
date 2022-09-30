@@ -16,4 +16,5 @@ function status_array () {
 	  status.push(work);
 	  status.push(task);
    }
+   return status;
 }
