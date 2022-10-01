@@ -4,12 +4,12 @@
 
 @charset "ISO-8859-1";
 
-body { 
+body { /* generic for all pages */
    background-color: #CECBCC;
    display: flex;
    align-items: center;
-   justify-content: center
-   }
+   justify-content: center;
+}
    
 /* .home {
    use for index page class
@@ -36,3 +36,17 @@ body {
 	border-radius: 50%;
 	outline: 2px solid rgb(210, 196, 185);
 }
+
+.output {
+    display: grid;
+    width: 1900px;
+    height: 1030px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.box {
+  border: 1px solid #ddd;  
+  box-sizing: border-box;
+ }

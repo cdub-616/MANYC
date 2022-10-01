@@ -1,6 +1,8 @@
-/** js file for login page
+/** Creates login page
  *  Ashar
- *  version 1.0.0  9/27/2022 */
+ *  version 1.0.0  9/27/2022
+ *
+ *  validate() verifies username and password are correct */
  
  function validate()
 {
