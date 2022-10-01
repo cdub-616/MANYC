@@ -1,4 +1,38 @@
+/*  style sheet for MANYC project
+    Chris Wright, Ashar, and Yahir
+    version 1.0.0  9/14/2022  */
+
 @charset "ISO-8859-1";
+
 body { 
-	background-color: #CECBCC;
-	}
+   background-color: #CECBCC;
+   display: flex;
+   align-items: center;
+   justify-content: center
+   }
+   
+/* .home {
+   use for index page class
+}*/
+   
+/*.input-group {
+   use for Login page class
+}*/
+   
+.grid {
+	display: grid;
+	grid-template-columns: repeat(10, 75px);
+	grid-template-rows: repeat(10, 75px);
+	width: 770px;
+	height: 760px;
+	margin: 0 auto;
+	justify-content: center;
+	background-color: rgb(210, 196, 185);
+}
+
+.cell {
+	border: 5px solid rgb(210, 196, 185);
+	background-color: white;
+	border-radius: 50%;
+	outline: 2px solid rgb(210, 196, 185);
+}
