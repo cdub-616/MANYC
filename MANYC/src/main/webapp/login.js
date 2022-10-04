@@ -1,5 +1,5 @@
 /** Creates login page
- *  Ashar
+ *  Ashar, Nick
  *  version 1.0.0  9/27/2022
  *
  *  validate() verifies username and password are correct */
