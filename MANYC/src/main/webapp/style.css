@@ -26,15 +26,6 @@ body { /* generic for all pages */
    
 }
 
-.log {
-	background-image: url("Five9Zoom.jpg");
-	width: 1920px;
-	height: 990px;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
 /*container changes the format for everything that is in the container class*/
 .container{
    width: 100%;
