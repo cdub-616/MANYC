@@ -25,7 +25,7 @@ function createGrid() {
 			   temp.style.backgroundColor = 'black';
 			   break;
 			case "available":
-			   temp.style.backgroundColor = 'lime';
+			   temp.style.backgroundColor = 'white';
 			   break;
 			case "on voice call":
 			   temp.style.backgroundColor = 'blue';
@@ -34,7 +34,7 @@ function createGrid() {
 			   temp.style.backgroundColor = '#F84E89';
 			   break;
 			case "on preview task":
-			   temp.style.backgroundColor = 'yellow';
+			   temp.style.backgroundColor = '#CECBCC';
 			   break;
 		}
 	}
