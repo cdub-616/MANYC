@@ -3,30 +3,35 @@
      Ashar 
      version 1.0.0  9/27/2022 -->
 <html>
-   <head>
-      <meta charset="ISO-8859-1">
-      <link rel="stylesheet" href="style.css" type="text/css">
-      <title>Login</title>
-   </head>
-   <body>
-      <div class="input-group"><!-- div combines everything inside together 
+
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="container">
+		<!-- div combines everything inside together 
 	     which makes it easier to format using css -->
-	     <form>
-		 <label for="username"> Username </label>
-		 <!-- the label creates a click able space -->
-		    
-		 <input id="username" required placeholder="username">
-		 <!-- input tag takes the input from the user -->
-		 <br>
-		 <label for="password"> Password </label> 
-		 <input id="password" type="password" required placeholder="password">
-		 <br>
-		 <button type="reset">Reset</button>
-		 <!-- Reset button to reset all the input fields -->
-		 
-		 <button type="button" onclick="validate()">Submit</button>
-	    </form>
-	    <script src="login.js"></script>
-      </div>
-   </body>
+		<div class="card">
+			<div class="inner-box">
+				<div class="front">
+					<h2> Login</h2>
+					<input id="username" type="username" class="input" required 
+					   placeholder="Username">
+					<!-- input tag takes the input from the user -->
+				
+					<input id="password" type="password" class="input" required 
+					   placeholder="Password">
+					
+					<button type="button" class="btn" onclick="validate()">
+					   Submit</button>
+					<input type="checkbox"> <span> Remember me</span>
+					<script src="login.js"></script>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
 </html>
