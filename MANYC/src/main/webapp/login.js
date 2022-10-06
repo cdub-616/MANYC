@@ -10,7 +10,7 @@
 	var password=document.getElementById("password").value;
 	if (username =="username" && password=="password")
 		{
-		window.location.href = "Grid.html";
+		window.location.href = "dynamic_grid.html";
 		alert("login succesfully");
 		}
 	else 
