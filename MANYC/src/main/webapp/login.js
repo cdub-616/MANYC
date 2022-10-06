@@ -10,6 +10,7 @@
 	var password=document.getElementById("password").value;
 	if (username =="username" && password=="password")
 		{
+		window.location.href = "Grid.html";
 		alert("login succesfully");
 		}
 	else 
