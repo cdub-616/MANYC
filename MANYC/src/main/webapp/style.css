@@ -18,8 +18,8 @@ body { /* generic for all pages */
    
 .home {
    background-image: url("Five9GeniusSpringRelease.jpg");
-   width: 1920px;
-   height: 990px;
+   width: 100vw;
+   height: 100vh;
    background-position: center; 
    background-repeat: no-repeat; 
    background-size: cover;
