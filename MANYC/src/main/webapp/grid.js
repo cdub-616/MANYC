@@ -22,19 +22,19 @@ function createGrid() {
 		const temp = createEle(output, 'div', ``, 'box');
 		switch(agentStatus[i]) {  //color based on status
 			case "logged out":
-			   temp.style.backgroundColor = '#68FB08'; //green
+			   temp.style.backgroundColor = 'red';
 			   break;
 			case "available":
-			   temp.style.backgroundColor = '#F7FB08'; //yellow
+			   temp.style.backgroundColor = 'orange';
 			   break;
 			case "on voice call":
-			   temp.style.backgroundColor = '#1A56FA'; //blue
+			   temp.style.backgroundColor = 'yellow';
 			   break;
 			case "after call work":
-			   temp.style.backgroundColor = '#F84E89'; //hot pink
+			   temp.style.backgroundColor = 'green';
 			   break;
 			case "on preview task":
-			   temp.style.backgroundColor = '#48495A'; //dark grey
+			   temp.style.backgroundColor = 'blue';
 			   break;
 		}
 	}
