@@ -10,7 +10,7 @@
 }
 
 body { /* generic for all pages */
-   background-color: #000000;
+   background-color: "white";
    display: flex;
    align-items: center;
    justify-content: center;
