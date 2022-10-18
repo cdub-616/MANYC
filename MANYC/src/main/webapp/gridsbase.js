@@ -62,7 +62,7 @@
             tutorial_canvas_context.beginPath();
             tutorial_canvas_context.arc(this.x, this.y, this.radius, 0, (Math.PI*2), true)
             tutorial_canvas_context.fillStyle = this.color
-           tutorial_canvas_context.fill()
+            tutorial_canvas_context.fill()
             tutorial_canvas_context.stroke(); 
         }
         move(){
@@ -72,22 +72,35 @@
     }
 
     class Grid{
-        constructor(width, height, color){
+        //constructor(width, height, color){
+        constructor(width, height, array) {
             this.width = width
             this.height = height
+            let agents = []
+            agents = [...array]
             this.x = 0
             this.y = 0
             this.blocks = []
+            let count = 0
             for(let q = 0; this.y<tutorial_canvas.height; q++){
+                count++
                 for(let q = 0; this.x<tutorial_canvas.width; q++){
-                    let block = new Rectangle(this.x, this.y, this.height, this.width, color)
+                    count++
+                    let agentNumber = count
+                    //console.log(this.x)
+                    //console.log(this.y)
+                    console.log(agentNumber)
+                    //let block = new Rectangle(this.x, this.y, this.height, this.width, color)
+                    if (count<=10080){
+                    let block = new Rectangle(this.x, this.y, this.height, this.width, agents[agentNumber])
                     this.blocks.push(block)
+                    }
                     this.x+=this.width
                 }
                 this.y+=this.height
                 this.x = 0
             }
-
+            //console.log(count)
         }
         draw(){
             for(let b = 0; b<this.blocks.length; b++){
@@ -148,19 +161,112 @@
 	const SCRN_W = 1900
 	const SCRN_H = 1010
 	const REC_W = SCRN_W/COLUMNS
-	const REC_H = SCRN_H/ROWS;
+	const REC_H = SCRN_H/ROWS
+    const statusType = ["logged out", "available", "on voice call", "after call work", "on preview task"];
 
+    function newCenter(array) {
+        let a_ray = [...array]
+        for (let i=0; i<10080; i++) {
+            a_ray.push("offline")
+            //a_ray.push("blue")
+        }
+        /*for (let i=0; i<10080; i++) {
+            //ids.push("blue")
+            ids.push("available")
+        }*/
+        return a_ray
+    }
 
-    let board = new Grid(REC_W, REC_H, "blue")
-	let board2 = new Grid(REC_W, REC_H, "red")
-   
-    window.setInterval(function(){ 
+    function updateCenter(array) {
+        let a_ray = [...array]
+        let count = 0
+        for (let i=0; i<10080; i++) {
+            //let index = Math.floor(Math.random() * 10080)
+            let type = statusType[Math.floor(Math.random() * 5)]
+            //a_ray[index] = type
+            a_ray[i] = type
+            //console.log(a_ray[index])
+            count++
+        }
+        //a_ray[9999] += count;
+        //console.log(a_ray[9999])
+        return a_ray
+    }
 
-        board.draw()
-		setInterval(board2.draw(), 500)
-    }, 1000) 
-	
-	
-
+    function colorArray(array) {
+        let a_ray = array
+        for (let i=0; i<10080; i++) {
+            //console.log(a_ray[i])
+            switch(a_ray[i]) {  //color based on status
+                case "logged out":
+                    a_ray[i] = 'red';
+                    break;
+                case "available":
+                    a_ray[i] = 'orange';
+                    break;
+                case "on voice call":
+                    a_ray[i] = 'yellow';
+                    break;
+                case "after call work":
+                    a_ray[i] = 'green';
+                    break;
+                case "on preview task":
+                    a_ray[i] = 'blue';
+                    break;
+                default:
+                    a_ray[i] = 'black';
+            }
+        }
+        //console.log(a_ray)
+        return a_ray
+    }
+    let ids = []
+    let idsNew = []
+    let idsColor = []
+    let idsUpdateColor = []
     
-})
+    idsNew = newCenter(ids)
+    //idsNew = updateCenter(ids)
+    //console.log(idsNew[9999])
+    //idsNew = updateCenter(idsNew)
+    //console.log(idsNew[9999])
+    //idsColor = updateCenter(idsNew)
+    //idsUpdateColor = colorArray(idsColor)
+    //let board = new Grid(REC_W, REC_H, ids)
+    //let board = new Grid(REC_W, REC_H, "red")
+    let boardInit = new Grid(REC_W, REC_H, colorArray(idsNew))
+    //let board = new Grid(REC_W, REC_H, idsUpdateColor)
+    //let board = new Grid(REC_W, REC_H, idsNew)
+    //console.log(ids)
+    //console.log(idsNew)
+    //console.log(idsColor)
+    //console.log(colorArray(idsColor))
+    //console.log(idsUpdateColor)
+    boardInit.draw()
+    //idsNew = updateCenter(idsNew)
+    setTimeout(() => {
+        window.setInterval(function(){ 
+            let count = 0
+            //console.log(idsColor)
+            //idsColor = updateCenter(idsNew)
+            //console.log(idsColor)
+            idsNew = updateCenter(idsNew)
+            //let board = new Grid(REC_W, REC_H, colorArray(idsColor))
+            let board = new Grid(REC_W, REC_H, colorArray(idsNew))
+            board.draw()
+            console.log(count)
+            count ++
+        }, 1000)
+    , 1000}) 
+    /*function model() {
+        setTimeout(() => {
+            //window.setInterval(function(){
+                idsNew = updateCenter(idsNew)
+                console.log(idsNew[9999])
+                let board = new Grid(REC_W, REC_H, colorArray(idsNew))
+                board.draw()
+                model()
+            //}, 1000)
+        , 1000})
+    } */  
+ })
