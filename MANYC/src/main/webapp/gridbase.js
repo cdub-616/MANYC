@@ -16,10 +16,12 @@
 	const REC_H = SCRN_H/ROWS
     const statusType = ["logged out", "available", "on voice call", "after call work", "on preview task"];
 
-    let myCanvas = document.getElementById("gridCanvas");
-    let myCanvas_context = myCanvas.getContext('2d');
+    const myCanvas = document.getElementById("gridCanvas");
+    const myCanvas_context = myCanvas.getContext('2d');
 
     myCanvas.style.background = "#000000"
+    myCanvas.width = window.innerWidth;
+    myCanvas.height = window.innerHeight;
 
     class Rectangle {
         constructor(x, y, height, width, color) {
