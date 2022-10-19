@@ -1,5 +1,5 @@
 /** Creates login page
- *  Ashar, Nick
+ *  Ashar, Nick, Yahir
  *  version 1.0.0  9/27/2022
  *          1.1.0  10/5/2022 condition valid -> grid page
  *          1.2.0  10/12/2022 condition invalid -> error page
@@ -12,7 +12,7 @@
 	var password=document.getElementById("password").value;
 	if (username =="username" && password=="password")
 		{
-		window.location.href = "dynamic_grid.html";
+		window.location.href = "grid.html";
 		}
 	else 
 		{
