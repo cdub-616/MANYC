@@ -12,8 +12,11 @@
 	const COLUMNS = 125
 	const SCRN_W = 1900
 	const SCRN_H = 1010
-	const REC_W = SCRN_W/COLUMNS
-	const REC_H = SCRN_H/ROWS
+    const MAX_AGENTS = 10080
+    const MAX_CHANGES = 1800
+    const ONE_SEC = 1000
+    const REC_W = window.innerWidth/COLUMNS
+    const REC_H = window.innerHeight/ROWS
     const statusType = ["logged out", "available", "on voice call", "after call work", "on preview task"];
 
     const myCanvas = document.getElementById("gridCanvas");
@@ -57,7 +60,7 @@
                 for(let q = 0; this.x<myCanvas.width; q++){
                     count++
                     let agentNumber = count
-                    if (count<=10080){
+                    if (count <= MAX_AGENTS){
                     let block = new Rectangle(this.x, this.y, this.height, this.width, agents[agentNumber])
                     this.blocks.push(block)
                     }
@@ -69,17 +72,15 @@
         }
 
         draw(){
-            for(let b = 0; b<this.blocks.length; b++){
+            for(let b = 0; b < this.blocks.length; b++){
                 this.blocks[b].draw()
             }
         }
     }
 
-	
-
     function newCenter(array) {
         let a_ray = [...array]
-        for (let i=0; i<10080; i++) {
+        for (let i = 0; i < MAX_AGENTS; i++) {
             a_ray.push("offline")
         }
         return a_ray
@@ -87,9 +88,9 @@
 
     function updateCenter(array) {
         let a_ray = [...array]
-        for (let i=0; i<1800; i++) {
-            let index = Math.floor(Math.random() * 10080)
-            let type = statusType[Math.floor(Math.random() * 5)]
+        for (let i = 0; i < MAX_CHANGES; i++) {
+            let index = Math.floor(Math.random() * MAX_AGENTS)
+            let type = statusType[Math.floor(Math.random() * statusType.length)]
             a_ray[index] = type
         }
         return a_ray
@@ -97,7 +98,7 @@
 
     function colorArray(array) {
         let a_ray = array
-        for (let i=0; i<10080; i++) {
+        for (let i = 0; i < MAX_AGENTS; i++) {
             switch(a_ray[i]) {  //color based on status
                 case "logged out":
                     a_ray[i] = 'red';
@@ -123,16 +124,10 @@
 
     let idsNew = []
     idsNew = newCenter(idsNew)
-    let boardInit = new Grid(REC_W, REC_H, colorArray(idsNew))
-    let board = new Grid(REC_W, REC_H, colorArray(idsNew))
-    boardInit.draw()
-    setTimeout(() => {
-        window.setInterval(function(){ 
-            //let count = 0
-            idsNew = updateCenter(idsNew)
+    //let board = new Grid(REC_W, REC_H, colorArray(idsNew))
+    window.setInterval(function(){ 
             let board = new Grid(REC_W, REC_H, colorArray(idsNew))
             board.draw()
-            //count ++
-        }, 1000)
-    , 1000}) 
+            idsNew = updateCenter(idsNew)
+        }, ONE_SEC)
  })
