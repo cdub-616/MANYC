@@ -129,5 +129,5 @@
             let board = new Grid(REC_W, REC_H, colorArray(idsNew))
             board.draw()
             idsNew = updateCenter(idsNew) //update agent statuses
-        }, ONE_SEC) //time delay between renders
+        }, ONE_SEC) //delay between renders
  })
