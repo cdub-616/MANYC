@@ -49,19 +49,16 @@
         constructor(width, height, array) {
             this.width = width
             this.height = height
-            let agents = []
-            agents = [...array]
             this.x = 0
             this.y = 0
             this.blocks = []
-            let count = 0
+            let agentNumber = 0
             for(let q = 0; this.y<myCanvas.height; q++){
-                count++
+                agentNumber++
                 for(let q = 0; this.x<myCanvas.width; q++){
-                    count++
-                    let agentNumber = count
-                    if (count <= MAX_AGENTS){
-                    let block = new Rectangle(this.x, this.y, this.height, this.width, agents[agentNumber])
+                    agentNumber++
+                    if (agentNumber <= MAX_AGENTS){
+                    let block = new Rectangle(this.x, this.y, this.height, this.width, array[agentNumber])
                     this.blocks.push(block)
                     }
                     this.x+=this.width
@@ -78,8 +75,8 @@
         }
     }
 
-    function newCenter(array) {
-        let a_ray = [...array]
+    function newCenter() {
+        let a_ray = []
         for (let i = 0; i < MAX_AGENTS; i++) {
             a_ray.push("offline")
         }
@@ -97,9 +94,9 @@
     }
 
     function colorArray(array) {
-        let a_ray = array
+        let a_ray = [...array]
         for (let i = 0; i < MAX_AGENTS; i++) {
-            switch(a_ray[i]) {  //color based on status
+            switch(array[i]) {  //color based on status
                 case "logged out":
                     a_ray[i] = 'red';
                     break;
@@ -123,8 +120,7 @@
     }
 
     let idsNew = []
-    idsNew = newCenter(idsNew)
-    //let board = new Grid(REC_W, REC_H, colorArray(idsNew))
+    idsNew = newCenter()
     window.setInterval(function(){ 
             let board = new Grid(REC_W, REC_H, colorArray(idsNew))
             board.draw()
