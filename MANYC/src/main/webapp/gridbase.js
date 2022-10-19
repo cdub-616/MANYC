@@ -1,10 +1,15 @@
 /**  Creates a grid from a randomly filled array 
  *   Chris Wright
  *   version 1.0.0  10/1/2022
- *   
- *   createGrid() displays grid
- *   createEle() creates element for grid
- *   status_array() randomly fills array with agent status */
+ *           2.0.0  10/7/2022 rerenders rather than reloads window
+ * 
+ *   class Rectangle:  creates agent rectangles.
+ *      draw() draws Rectangle on canvas
+ *   class Grid:  creates grid of Rectangles
+ *      draw() draws Grid on canvas
+ *   newCenter() creates array of offline agents
+ *   updateCenter() makes status changes for some agents
+ *   colorArray() converts status array to color array */
  
  window.addEventListener('DOMContentLoaded', (event) =>{
     
@@ -117,11 +122,12 @@
         return a_ray
     }
 
+    //render grid
     let idsNew = []
     idsNew = newCenter()
     window.setInterval(function(){ 
             let board = new Grid(REC_W, REC_H, colorArray(idsNew))
             board.draw()
-            idsNew = updateCenter(idsNew)
-        }, ONE_SEC)
+            idsNew = updateCenter(idsNew) //update agent statuses
+        }, ONE_SEC) //time delay between renders
  })
