@@ -10,9 +10,7 @@
     
     const ROWS = 80
 	const COLUMNS = 125
-	const SCRN_W = 1900
-	const SCRN_H = 1010
-    const MAX_AGENTS = 10080
+    const MAX_AGENTS = 10000
     const MAX_CHANGES = 1800
     const ONE_SEC = 1000
     const REC_W = window.innerWidth/COLUMNS
@@ -62,7 +60,7 @@
                     this.blocks.push(block)
                     }
                     this.x+=this.width
-                }
+                }console.log(agentNumber)
                 this.y+=this.height
                 this.x = 0
             }
