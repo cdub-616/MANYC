@@ -120,18 +120,19 @@
         }
         return a_ray
     }
+
     let idsNew = []
-    
     idsNew = newCenter(idsNew)
     let boardInit = new Grid(REC_W, REC_H, colorArray(idsNew))
+    let board = new Grid(REC_W, REC_H, colorArray(idsNew))
     boardInit.draw()
     setTimeout(() => {
         window.setInterval(function(){ 
-            let count = 0
+            //let count = 0
             idsNew = updateCenter(idsNew)
             let board = new Grid(REC_W, REC_H, colorArray(idsNew))
             board.draw()
-            count ++
+            //count ++
         }, 1000)
     , 1000}) 
  })
