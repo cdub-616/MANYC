@@ -65,7 +65,7 @@
                     this.blocks.push(block)
                     }
                     this.x+=this.width
-                }console.log(agentNumber)
+                }
                 this.y+=this.height
                 this.x = 0
             }
