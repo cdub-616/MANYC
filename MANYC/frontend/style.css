@@ -1,7 +1,8 @@
 /*  style sheet for MANYC project
     Chris, Ashar, and Yahir
     version 1.0.0  9/14/2022  
-    version 1.1.0  10/19/2022  updated for gridbase.js*/
+    version 1.1.0  10/19/2022  updated for gridbase.js and 
+                               added background to login pages*/
 
 @charset "ISO-8859-1";
 
@@ -19,6 +20,9 @@ body { /* generic for all pages */
 
 /*index.html and login_error.html*/
 .container {
+   background-image: url("././images/FIve9Zoom.png");
+   background-repeat: no-repeat;
+   background-size: cover;
    width: 100%;
    min-height: 100vh;
    font-family: sans-serif;

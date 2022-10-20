@@ -1,7 +1,7 @@
 /**  Creates a grid from a randomly filled array 
  *   Chris
  *   version 1.0.0  10/1/2022
- *           2.0.0  10/7/2022 rerenders rather than reloads window
+ *           1.1.0  10/7/2022 rerenders rather than reloads window
  * 
  *   class Rectangle:  creates agent rectangles.
  *      draw() draws Rectangle on canvas
@@ -101,19 +101,19 @@
         for (let i = 0; i < MAX_AGENTS; i++) {
             switch(array[i]) {  //color based on status
                 case "logged out":
-                    a_ray[i] = 'red';
+                    a_ray[i] = 'fuchsia'; 
                     break;
                 case "available":
-                    a_ray[i] = 'orange';
-                    break;
-                case "on voice call":
                     a_ray[i] = 'yellow';
                     break;
+                case "on voice call":
+                    a_ray[i] = 'orange'; 
+                    break;
                 case "after call work":
-                    a_ray[i] = 'green';
+                    a_ray[i] = 'lime';
                     break;
                 case "on preview task":
-                    a_ray[i] = 'blue';
+                    a_ray[i] = 'cyan';
                     break;
                 default:
                     a_ray[i] = 'black';
