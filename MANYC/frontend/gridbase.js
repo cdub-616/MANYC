@@ -29,6 +29,14 @@
     myCanvas.width = window.innerWidth;
     myCanvas.height = window.innerHeight;
 
+    class Agent_data {
+        constructor(agentID, agentName, agentStatus) {
+        this.agentID = agentID;
+        this.agentName = agentName;
+        this.agentStatus = agentStatus;
+        }
+    }
+
     class Rectangle {
         constructor(x, y, height, width, color) {
             this.x = x
@@ -120,6 +128,19 @@
             }
         }
         return a_ray
+    }
+
+    function randomID() {
+        temp = []
+        for (let i = 0; i < 16; i++) {
+            temp.push(Math.floor(Math.random() * 10))
+        }
+        return String(temp)
+    }
+
+    function randomName() {
+        temp = ["John Doe", "Jane Doe"];
+        return temp[Math.floor(Math.random() * 2)]
     }
 
     //render grid
