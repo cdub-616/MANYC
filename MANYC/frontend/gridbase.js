@@ -1,5 +1,5 @@
 /**  Creates a grid from a randomly filled array 
- *   Chris Wright
+ *   Chris
  *   version 1.0.0  10/1/2022
  *           2.0.0  10/7/2022 rerenders rather than reloads window
  * 
