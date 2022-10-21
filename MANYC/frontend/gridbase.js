@@ -37,6 +37,11 @@
         }
     }
 
+    const rID = randomID();
+    const rNM = randomName();
+    const rST = randomStatus();
+    const test = new Agent_data(rID, rNM, rST);
+
     class Rectangle {
         constructor(x, y, height, width, color) {
             this.x = x
@@ -73,7 +78,7 @@
                     this.blocks.push(block)
                     }
                     this.x+=this.width
-                }console.log(agentNumber)
+                }
                 this.y+=this.height
                 this.x = 0
             }
@@ -131,16 +136,22 @@
     }
 
     function randomID() {
-        temp = []
+        let temp = []
         for (let i = 0; i < 16; i++) {
             temp.push(Math.floor(Math.random() * 10))
         }
-        return String(temp)
+        const sTemp = temp.join('')
+        const nsTemp = String(sTemp)
+        return nsTemp
     }
 
     function randomName() {
         temp = ["John Doe", "Jane Doe"];
-        return temp[Math.floor(Math.random() * 2)]
+        return String(temp[Math.floor(Math.random() * 2)])
+    }
+
+    function randomStatus() {
+        return String(statusType[Math.floor(Math.random() * statusType.length)])
     }
 
     //render grid
