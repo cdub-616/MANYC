@@ -5,7 +5,6 @@
  *          1.2.0  10/12/2022 condition invalid -> error page
  *
  *  validate() verifies username and password are correct */
- 
  function validate()
 {
 	var username=document.getElementById("username").value;
