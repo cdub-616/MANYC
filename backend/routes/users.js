@@ -14,9 +14,9 @@ router.get('/', (req, res) => {
         }
     })
 });
-router.get('/:id', (req, res) =>{
-    let id = req.params.id;
-    db.query('select * from employee_changes where id = ' + id, (err,result) =>{
+router.get('/:ids', (req, res) =>{
+    let ids = req.params.ids;
+    db.query('select * from employee_changes where ids = ' + ids, (err,result) =>{
         if(err){
             res.send("cannot get data from database, check get id api" + err);
         }else{
@@ -34,24 +34,24 @@ router.post('/', (req, res)=>{
         }
     });
 });
-router.patch('/:id', (req, res) =>{;
-    const id = req.params.id;
+router.patch('/:ids', (req, res) =>{;
+    const ids = req.params.ids;
     const data = req.body;
-    db.query('UPDATE employee_changes SET ? WHERE id = '+ id, data,(err, result) =>{
+    db.query('UPDATE employee_changes SET ? WHERE ids = '+ ids, data,(err, result) =>{
         if(err){
             res.send('cannot edit the database check patch api ' + err);
         }else{
-            res.send('user with the id ' + id + ' has been updated' + result);
+            res.send('user with the id ' + ids + ' has been updated' + result);
         }
     });
 });
-router.delete('/:id', (req, res) =>{
-    let id = req.params.id;
-    db.query("DELETE from employee_changes where id = " + id,(err, result) =>{
+router.delete('/:ids', (req, res) =>{
+    let ids = req.params.ids;
+    db.query("DELETE from employee_changes where ids = " + ids,(err, result) =>{
         if(err){
             res.send("cannot delete data from the database, check delete api" + err);
         }else{
-            res.send(id+ " has been deleted");
+            res.send(ids+ " has been deleted");
         }
     });
 });

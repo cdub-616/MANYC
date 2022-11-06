@@ -5,8 +5,7 @@ const usersRoutes = require("../backend/routes/users"); //this is creating a rou
 const app = express();
 
 app.use(bodyParser.json());
-app.use('/users', usersRoutes);//line of code which utilizes all the code in the users.js file
-app.use('/', (req, res) => res.send("Hello from home page"));
+app.use('/', usersRoutes);//line of code which utilizes all the code in the users.js file
 app.listen(3000, (err) =>{
     if(err){
         console.log("Server aint working");
