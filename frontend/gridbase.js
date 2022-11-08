@@ -2,19 +2,26 @@
  *   Chris
  *   version 1.0.0  10/1/2022
  *           1.1.0  10/7/2022 rerenders rather than reloads window
- * 
+ *           1.2.0  11/8/2022 agents have ID and status
+ *
+ *   class RandomAgent:  creates agent with random ID and status 
  *   class Rectangle:  creates agent rectangles.
- *      draw() draws Rectangle on canvas
+ *      draw():  draws Rectangle on canvas
  *   class Grid:  creates grid of Rectangles
- *      draw() draws Grid on canvas
- *   newCenter() creates array of offline agents
- *   updateCenter() makes status changes for some agents
- *   colorArray() converts status array to color array */
+ *      draw():  draws Grid on canvas
+ *   class RandomAgent:  
+ *   function randomID():  returns randomized 15 digit agent ID
+ *   function randomStatus():  returns randomized agent status
+ *   function newCenter():  returns array of offline agents
+ *   function updateCenter(array):  returns array with status changes for some 
+ *      agents
+ *   function toColor(stat):  takes in status and returns color */
  
  window.addEventListener('DOMContentLoaded', (event) =>{
     
     const ROWS = 80
 	const COLUMNS = 125
+    const MAX_ID_DIG = 15
     const MAX_AGENTS = 10000
     const MAX_CHANGES = 1800
     const ONE_SEC = 1000
@@ -29,6 +36,13 @@
     myCanvas.style.background = "#000000"
     myCanvas.width = window.innerWidth;
     myCanvas.height = window.innerHeight;
+
+    class RandomAgent {
+        constructor(agID, agStatus) {
+        this.agID = agID
+        this.agStatus = agStatus
+        }
+    }
 
     class Rectangle {
         constructor(x, y, height, width, color) {
@@ -73,16 +87,16 @@
             }
         }
 
-        draw(){
-            for(let b = 0; b < this.blocks.length; b++){
-                this.blocks[b].draw()
+        draw() {
+            for(let i = 0; i < this.blocks.length; i++){
+                this.blocks[i].draw()
             }
         }
     }
 
     function randomID() {
         let id = ""
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < MAX_ID_DIG; i++) {
             id += Math.floor(Math.random() * 10)
         }
         return id
@@ -92,19 +106,12 @@
         return statusType[Math.floor(Math.random() * statusType.length)]
     }
 
-    class randomAgent {
-        constructor(agID, agStatus) {
-        this.agID = agID
-        this.agStatus = agStatus
-        }
-    }
-
     function newCenter() {
         let a_ray = []
         for (let i = 0; i < MAX_AGENTS; i++) {
             let id = randomID()
             let stat = "offline"
-            let agent = new randomAgent(id, stat)
+            let agent = new RandomAgent(id, stat)
             a_ray.push(agent)
         }
         return a_ray
