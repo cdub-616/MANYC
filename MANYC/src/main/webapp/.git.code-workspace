@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../.git"
+		},
+		{
+			"name": "MANYC",
+			"path": "../../../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "MANYC"
+	}
+}
