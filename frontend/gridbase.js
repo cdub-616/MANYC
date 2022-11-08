@@ -20,7 +20,8 @@
     const ONE_SEC = 1000
     const REC_W = window.innerWidth/COLUMNS
     const REC_H = window.innerHeight/ROWS
-    const statusType = ["logged out", "available", "on voice call", "after call work", "on preview task"];
+    const statusType = ["logged out", "available", "on voice call", 
+        "after call work", "on preview task"];
 
     const myCanvas = document.getElementById("gridCanvas");
     const myCanvas_context = myCanvas.getContext('2d');
@@ -56,12 +57,13 @@
             this.y = 0
             this.blocks = []
             let agentNumber = 0
-            for(let q = 0; this.y<myCanvas.height; q++){
+            for(let i = 0; this.y < myCanvas.height; i++){
                 agentNumber++
-                for(let q = 0; this.x<myCanvas.width; q++){
+                for(let i = 0; this.x < myCanvas.width; i++){
                     agentNumber++
-                    if (agentNumber <= MAX_AGENTS){
-                    let block = new Rectangle(this.x, this.y, this.height, this.width, array[agentNumber])
+                    if (agentNumber < MAX_AGENTS){
+                    let block = new Rectangle(this.x, this.y, this.height,
+                        this.width, toColor(array[agentNumber].agStatus))
                     this.blocks.push(block)
                     }
                     this.x+=this.width
@@ -78,10 +80,32 @@
         }
     }
 
+    function randomID() {
+        let id = ""
+        for (let i = 0; i < 15; i++) {
+            id += Math.floor(Math.random() * 10)
+        }
+        return id
+    }
+
+    function randomStatus() {
+        return statusType[Math.floor(Math.random() * statusType.length)]
+    }
+
+    class randomAgent {
+        constructor(agID, agStatus) {
+        this.agID = agID
+        this.agStatus = agStatus
+        }
+    }
+
     function newCenter() {
         let a_ray = []
         for (let i = 0; i < MAX_AGENTS; i++) {
-            a_ray.push("offline")
+            let id = randomID()
+            let stat = "offline"
+            let agent = new randomAgent(id, stat)
+            a_ray.push(agent)
         }
         return a_ray
     }
@@ -90,44 +114,40 @@
         let a_ray = [...array]
         for (let i = 0; i < MAX_CHANGES; i++) {
             let index = Math.floor(Math.random() * MAX_AGENTS)
-            let type = statusType[Math.floor(Math.random() * statusType.length)]
-            a_ray[index] = type
+            let type = randomStatus()
+            a_ray[index].agStatus = type
         }
         return a_ray
     }
 
-    function colorArray(array) {
-        let a_ray = [...array]
-        for (let i = 0; i < MAX_AGENTS; i++) {
-            switch(array[i]) {  //color based on status
-                case "logged out":
-                    a_ray[i] = 'fuchsia'; 
-                    break;
-                case "available":
-                    a_ray[i] = 'yellow';
-                    break;
-                case "on voice call":
-                    a_ray[i] = 'orange'; 
-                    break;
-                case "after call work":
-                    a_ray[i] = 'lime';
-                    break;
-                case "on preview task":
-                    a_ray[i] = 'cyan';
-                    break;
-                default:
-                    a_ray[i] = 'black';
-            }
+    function toColor(stat) {
+        switch(stat) {
+            case "logged out":
+                return 'fuchsia'
+                break
+            case "available":
+                return 'yellow'
+                break
+            case "on voice call":
+                return 'orange'
+                break
+            case "after call work":
+                return 'lime'
+                break
+            case "on preview task":
+                return 'cyan'
+                break
+            default:
+                return 'black'
         }
-        return a_ray
     }
 
     //render grid
     let idsNew = []
     idsNew = newCenter()
     window.setInterval(function(){ 
-            let board = new Grid(REC_W, REC_H, colorArray(idsNew))
-            board.draw()
-            idsNew = updateCenter(idsNew) //update agent statuses
-        }, ONE_SEC) //delay between renders
+        let board = new Grid(REC_W, REC_H, idsNew)
+        board.draw()
+        idsNew = updateCenter(idsNew) //update agent statuses
+    }, ONE_SEC) //delay between renders
  })
