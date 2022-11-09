@@ -10,6 +10,8 @@
 
  function validate()
 {
+	/*Saving for back up
+
 	var username=document.getElementById("username").value;
 	var password=document.getElementById("password").value;
 	if (username =="username" && password=="password")
