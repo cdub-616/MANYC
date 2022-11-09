@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <!-- Displays grid page 
-     Chris
-     version 1.0.0  10/1/2022 -->
+     Chris, Yahir
+     version 1.0.0  10/1/2022 
+             1.1.0  11/8/2022  added pop-up modal window -->
 
 <html lang = "en" dir = "ltr">
   <head>
     <title> Grid Page </title>
+
+    <!--Added css file-->
+    <link rel="stylesheet" href="gridstyle.css" type="text/css">
   </head>
   <body>
     <script src = "gridbase.js" ></script>
@@ -13,5 +17,39 @@
       <canvas id = "gridCanvas" ></canvas>
       <h1 id = "text" ></h1>
     </div>
+
+    <!--Button opens up a modal window-->
+    <button class="rounded-button" data-modal-target="#modal">
+      <ion-icon name="cog-sharp" size="large"></ion-icon>
+    </button>
+
+    <!--Modal window-->
+    <div class="modal" id="modal">
+
+      <!--Modal window's contents-->
+      <!--Modal header inlcudes title and close button-->
+      <div class="modal-header">
+        <div class="title">Menu</div>
+        <button data-close-button class="close-button">&times;</button>
+      </div>
+
+      <!--Modal body display options for "Charts" and "Logout"-->
+      <div class="modal-body">
+        <button type="buttonmod" class="buttonmod">Charts</button>
+        <br>
+        <br>
+        <a href="index.html">
+          <button type="buttonmod" class="buttonmod">Logout</button>
+        </a>
+      </div>
+    </div>
+
+    <!--Overlay displays as the background when modal window is open-->
+    <div id="overlay"></div>
+    
+    <!------------------------------Added Scripts------------------------------->
+    <script defer src="gridmenu.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   </body>
 </html>

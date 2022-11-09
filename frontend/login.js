@@ -10,7 +10,7 @@
 
  function validate()
 {
-	/*Saving for back up
+	//Saving for back up
 
 	var username=document.getElementById("username").value;
 	var password=document.getElementById("password").value;
@@ -22,8 +22,8 @@
 		{
 		window.location.href = "login_error.html";
 		}
-	*/
-	const mysql = require("mysql");
+	
+	/*const mysql = require("mysql");
 	var db = mysql.createConnection({
 		host:'localhost',
 		user:'root',
@@ -51,5 +51,5 @@
 			break;
 		default:
 			window.location.href = "login_error.html";
-	}
+	}*/
 }
