@@ -12,11 +12,6 @@
     <link rel="stylesheet" href="gridstyle.css" type="text/css">
   </head>
   <body>
-    <script src = "gridbase.js" ></script>
-    <div id = "grid">  
-      <canvas id = "gridCanvas" ></canvas>
-      <h1 id = "text" ></h1>
-    </div>
 
     <!--Button opens up a modal window-->
     <button class="rounded-button" data-modal-target="#modal">
@@ -46,10 +41,19 @@
 
     <!--Overlay displays as the background when modal window is open-->
     <div id="overlay"></div>
+
+    <!------------------------------Grid--------------------------------------->
+    <script src = "gridbase.js" ></script>
+    <div id = "grid">  
+      <canvas id = "gridCanvas" ></canvas>
+      <h1 id = "text" ></h1>
+    </div>
     
-    <!------------------------------Added Scripts------------------------------->
+    <!------------------------------Added Scripts------------------------------>
     <script defer src="gridmenu.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/
+      ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/
+      ionicons.js"></script>
   </body>
 </html>

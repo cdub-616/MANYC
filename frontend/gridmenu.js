@@ -1,3 +1,9 @@
+/**  Creates a pop-up on grid page with legend and buttons
+ *   Yahir
+ *   version 1.0.0  11/9/2022
+ *
+ */
+
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
