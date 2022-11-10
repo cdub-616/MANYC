@@ -6,11 +6,12 @@
  *			1.3.0  11/7/2022 prevent those in the database from logging 
  *                           in/filter system
  *
- *  validate() verifies username and password are correct */
+ *  function validate():  verifies username and password are correct */
+
  function validate()
 {
 	//Saving for back up
-	
+
 	var username=document.getElementById("username").value;
 	var password=document.getElementById("password").value;
 	if (username =="username" && password=="password")
