@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <!-- Displays page of pie chart, curently using placeholder data,
-     no curent way to return to grid page
       Maliacki
       -->
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content=
-        "width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
   
     <title>Pie Chart</title>
 
     <style>
         body {
-            background-color: silver;
+            background-color: rgb(50, 50, 255);
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
           }
           
-          #my-pie-chart-container {
+          #agent-pie-chart-container {
             display: flex;
             align-items: center;
           }
           
-          #my-pie-chart {
+          #agent-pie-chart {
             background: conic-gradient(fuchsia 0.00% 25.07%, lime 25.07% 34.56%, orange 34.56% 64.70%, yellow 64.70% 80.00%, cyan 80.00%);
             border-radius: 50%;
               width: 500px;
@@ -78,8 +78,9 @@
 <body>
     <h1>Agent Status</h1>
 
-<div id="my-pie-chart-container">
-  <div id="my-pie-chart"></div>
+<!-- Static Chart -->
+<div id="agent-pie-chart-container">
+  <div id="agent-pie-chart"></div>
 
   <div id="legend">
     <div class="entry">
@@ -103,6 +104,13 @@
       <div class="entry-text">On Preview Task</div>
     </div>
   </div>
+</div>
+
+<!-- Button that returns to grid -->
+<div style="text-align: center; position:fixed; left:80px; top:20px;">
+  <a href="grid.html">
+  <button class="button" style="width: 100px; height: 40px;">Return to Grid</button>
+  </a>
 </div>
 </body>
   
