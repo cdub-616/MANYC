@@ -1,10 +1,13 @@
 /*this file has all the rest api methods, it is separated from the running file
 this imports the database connection file(db_connection.js)
 This is also exported to the main server file(index.js)*/
+
 const express = require("express");
 const router = express.Router();
 router.use(express.json());
-const db = require('./db_connection');//routing the database connection file so we can query the data
+const db = require('./db_connection');
+
+//routing the database connection file so we can query the data
 router.get('/', (req, res) => {
     db.query('select * from employee_changes',(err, result) => {
         if(err){
@@ -16,7 +19,8 @@ router.get('/', (req, res) => {
 });
 router.get('/:ids', (req, res) =>{
     let ids = req.params.ids;
-    db.query('select * from employee_changes where ids = ' + ids, (err,result) =>{
+    db.query('select * from employee_changes where ids = ' + ids, 
+        (err,result) =>{
         if(err){
             res.send("cannot get data from database, check get id api" + err);
         }else{
@@ -37,7 +41,8 @@ router.post('/', (req, res)=>{
 router.patch('/:ids', (req, res) =>{;
     const ids = req.params.ids;
     const data = req.body;
-    db.query('UPDATE employee_changes SET ? WHERE ids = '+ ids, data,(err, result) =>{
+    db.query('UPDATE employee_changes SET ? WHERE ids = '+ ids, data,
+        (err, result) =>{
         if(err){
             res.send('cannot edit the database check patch api ' + err);
         }else{
@@ -49,7 +54,8 @@ router.delete('/:ids', (req, res) =>{
     let ids = req.params.ids;
     db.query("DELETE from employee_changes where ids = " + ids,(err, result) =>{
         if(err){
-            res.send("cannot delete data from the database, check delete api" + err);
+            res.send("cannot delete data from the database, check delete api" 
+                + err);
         }else{
             res.send(ids+ " has been deleted");
         }
