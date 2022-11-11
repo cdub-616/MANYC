@@ -1,5 +1,6 @@
 /*This file has made the connection to the mysql database and
-is exported to the rest api file(users.js)*/
+is exported to the rest api file(users.js)
+Ashar Javid*/
 const mysql = require("mysql");
 const db = mysql.createConnection({
     host:'localhost',

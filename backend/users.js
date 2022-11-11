@@ -1,6 +1,7 @@
 /*this file has all the rest api methods, it is separated from the running file
 this imports the database connection file(db_connection.js)
-This is also exported to the main server file(index.js)*/
+This is also exported to the main server file(index.js)
+Ashar Javid*/
 
 const express = require("express");
 const router = express.Router();
