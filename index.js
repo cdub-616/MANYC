@@ -13,8 +13,6 @@ app.use(express.static('frontend'));
 
 //line of code which utilizes all the code in the users.js file
 app.use('/', usersRoutes); 
-/*the code above is commented out to utilize the frontend files instead of database
-when the server uses get.*/
 
 app.listen(3000, (err) =>{
     if(err){
