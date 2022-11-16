@@ -95,6 +95,10 @@ function createBoard() {
     for (let i = 0; i < total; i++) {
         const temp = createEle(output, 'div', 'box');
         temp.setAttribute('id', i)
+        temp.addEventListener('mouseenter', () =>
+            console.log('Mouse enter'));
+        temp.addEventListener('mouseleave', () =>
+            console.log('Mouse leave'));
     }
     output.style.setProperty(`grid-template-columns`, 
         `repeat(${COLUMNS}, 1fr)`);
