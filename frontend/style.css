@@ -11,13 +11,6 @@
    padding: 0;
 }
 
-body { /* generic for all pages */
-   background-color: "white";
-   display: flex;
-   align-items: center;
-   justify-content: center;
-}
-
 /*index.html and login_error.html*/
 .container {
    background-image: url("././images/FIve9Zoom.png");
@@ -102,14 +95,17 @@ button{
 }
 
 /*grid.html*/
-.gridCanvas { 
-   width: vw;
-   height: vh;
-   position: absolute;
+.output {
+   background: black;
    box-sizing: border-box;
-   display: block;
+   display: grid;
+   width: 100vw;
+   height: 100vh;
+   margin: auto;
+   padding: 0;
 }
 
-.text {
-   color: black;
+.box {
+   border: 3px solid black;
+   border-radius: 50%;
 }
