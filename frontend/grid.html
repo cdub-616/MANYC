@@ -6,10 +6,12 @@
 
 <html lang = "en" dir = "ltr">
     <head>
+        <meta charset="UTF-8">
         <title> Grid Page </title>
 
         <!--Added css file-->
         <link rel="stylesheet" href="gridstyle.css" type="text/css">
+        <link rel="stylesheet" href="style.css"></link>
     </head>
     <body>
 
@@ -45,17 +47,17 @@
         <div id="overlay"></div>
 
         <!------------------------------Grid----------------------------------->
-        <script src = "gridbase.js" ></script>
-        <div id = "grid">  
-            <canvas id = "gridCanvas" ></canvas>
-            <h1 id = "text" ></h1>
+        
+        <div class = "grid">  
+            <!--<canvas id = "gridCanvas" ></canvas>
+            <h1 id = "text" ></h1>-->
         </div>
-    
+        <script src = "gridbase.js" ></script>
         <!------------------------------Added Scripts-------------------------->
         <script defer src="gridmenu.js"></script>
         <script type="module" 
             src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-            >
+                >
         </script>
         <script nomodule 
             src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js">
