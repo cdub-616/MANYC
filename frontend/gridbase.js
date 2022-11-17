@@ -95,10 +95,10 @@ function createBoard() {
     for (let i = 0; i < total; i++) {
         const temp = createEle(output, 'div', 'box');
         temp.setAttribute('id', i)
-        temp.addEventListener('mouseenter', () =>
-            console.log('Mouse enter'));
-        temp.addEventListener('mouseleave', () =>
-            console.log('Mouse leave'));
+        //temp.addEventListener('mouseenter', () => 
+        //    console.log('Mouse enter'));
+        //temp.addEventListener('mouseleave', () =>
+        //    console.log('Mouse leave'));
     }
     output.style.setProperty(`grid-template-columns`, 
         `repeat(${COLUMNS}, 1fr)`);
@@ -118,11 +118,76 @@ function updateColors(array) {
     }
 }
 
+let setUpToolTip = function () {
+    let tooltip = "",
+    toolTipDiv = document.querySelector(".tooltip"),
+    toolTipElements = Array.from(document.querySelectorAll(".box")),
+    timer;
+
+    let displayTooltip = function(e, obj) {
+        tooltip = "agent: " + idsNew[obj.id].agID 
+            //+ " status: " + idsNew[obj.id].agStatus;
+        toolTipDiv.innerHTML = tooltip;
+        toolTipDiv.style.top = e.pageY + "px";
+        toolTipDiv.style.left = e.pageX + "px";
+        fadeIn(toolTipDiv);
+    };
+
+    let fadeOut = function(element) {
+        let op = 1;
+        if (!timer) {
+            timer = setInterval(function() {
+                if (op <= 0.1) {
+                    clearInterval(timer);
+                    timer = null;
+                    element.style.opacity = 0;
+                    element.style.display = 'none';
+                }
+                element.style.opacity = op;
+                op -= op * 0.1;
+            }, 10);
+        }
+    };
+
+    let fadeIn = function(element) {
+        let op = 0.1;
+        element.style.display = 'block';
+        let timer = setInterval(function () {
+            if (op >= 1) {
+                clearInterval(timer);
+            }
+            element.style.opacity = op;
+            op += op * 0.1;
+        }, 10);
+    };
+
+    toolTipElements.forEach(function(elem) {
+        let timeout;
+        elem.addEventListener("mouseenter", function(e) {
+            let that = this;
+            timeout = setTimeout(function() {
+                displayTooltip(e, that);
+            }, 400);
+        });
+        elem.addEventListener("mouseover", function(e) {
+            displayTooltip(e, this);
+        })
+        elem.addEventListener("mouseleave", function (e) {
+            clearTimeout(timeout);
+            fadeOut(toolTipDiv);
+        })
+    })
+};
+
+
+
+
 //render grid
 let idsNew = []
 idsNew = newCenter()
 createBoard();
 window.setInterval(function(){ 
+    setUpToolTip();
     updateColors(idsNew);
     idsNew = updateCenter(idsNew) //update agent statuses
 }, ONE_SEC) //delay between renders
