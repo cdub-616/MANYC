@@ -95,10 +95,6 @@ function createBoard() {
     for (let i = 0; i < total; i++) {
         const temp = createEle(output, 'div', 'box');
         temp.setAttribute('id', i)
-        temp.addEventListener('mouseenter', () =>
-            console.log('Mouse enter'));
-        temp.addEventListener('mouseleave', () =>
-            console.log('Mouse leave'));
     }
     output.style.setProperty(`grid-template-columns`, 
         `repeat(${COLUMNS}, 1fr)`);
@@ -118,11 +114,92 @@ function updateColors(array) {
     }
 }
 
+let setUpToolTip = function () {
+    let tooltip = "",
+    toolTipDiv = document.querySelector(".tooltip"),
+    toolTipElements = Array.from(document.querySelectorAll(".box")),
+    timer;
+
+    let displayTooltip = function(e, obj) {
+        tooltip = "agent: " + idsNew[obj.id].agID 
+            //+ " status: " + idsNew[obj.id].agStatus;
+        toolTipDiv.innerHTML = tooltip;
+        let winX = e.clientX;           //x position mouse
+        let winY = e.clientY;           //y position mouse
+        let inWid = window.innerWidth;  
+        let inHt = window.innerHeight;
+        if (winY < (.5 * inHt) && (winX < (.5 * inWid))) {       //quad II
+            toolTipDiv.style.top = e.pageY + "px";
+            toolTipDiv.style.left = e.pageX + "px";
+        }
+        else if (winY > (.5 * inHt) && (winX < (.5 * inWid))) {  //quad III
+            toolTipDiv.style.top = e.pageY - 75 + "px";  //offset up
+            toolTipDiv.style.left = e.pageX + "px";
+        }
+        else if (winY < (.5 * inHt) && (winX > (.5 * inWid))) {  //quad I
+            toolTipDiv.style.top = e.pageY + "px";
+            toolTipDiv.style.left = e.pageX - 250 + "px";  //offset left
+        }
+        else {                                                   //quad IV
+            toolTipDiv.style.top = e.pageY - 75 + "px";    //offset up
+            toolTipDiv.style.left = e.pageX - 250 + "px";  //offset left
+        }
+        
+        fadeIn(toolTipDiv);
+    };
+
+    let fadeOut = function(element) {
+        let op = 1;
+        if (!timer) {
+            timer = setInterval(function() {
+                if (op <= 0.1) {
+                    clearInterval(timer);
+                    timer = null;
+                    element.style.opacity = 0;
+                    element.style.display = 'none';
+                }
+                element.style.opacity = op;
+                op -= op * 0.1;
+            }, 10);
+        }
+    };
+
+    let fadeIn = function(element) {
+        let op = 0.1;
+        element.style.display = 'block';
+        let timer = setInterval(function () {
+            if (op >= 1) {
+                clearInterval(timer);
+            }
+            element.style.opacity = op;
+            op += op * 0.1;
+        }, 10);
+    };
+
+    toolTipElements.forEach(function(elem) {
+        let timeout;
+        elem.addEventListener("mouseenter", function(e) {
+            let that = this;
+            timeout = setTimeout(function() {
+                displayTooltip(e, that);
+            }, 400);
+        });
+        elem.addEventListener("mouseleave", function (e) {
+            clearTimeout(timeout);
+            fadeOut(toolTipDiv);
+        })
+    })
+};
+
+
+
+
 //render grid
 let idsNew = []
 idsNew = newCenter()
 createBoard();
 window.setInterval(function(){ 
+    setUpToolTip();
     updateColors(idsNew);
     idsNew = updateCenter(idsNew) //update agent statuses
 }, ONE_SEC) //delay between renders
