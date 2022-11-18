@@ -95,10 +95,6 @@ function createBoard() {
     for (let i = 0; i < total; i++) {
         const temp = createEle(output, 'div', 'box');
         temp.setAttribute('id', i)
-        //temp.addEventListener('mouseenter', () => 
-        //    console.log('Mouse enter'));
-        //temp.addEventListener('mouseleave', () =>
-        //    console.log('Mouse leave'));
     }
     output.style.setProperty(`grid-template-columns`, 
         `repeat(${COLUMNS}, 1fr)`);
@@ -128,8 +124,27 @@ let setUpToolTip = function () {
         tooltip = "agent: " + idsNew[obj.id].agID 
             //+ " status: " + idsNew[obj.id].agStatus;
         toolTipDiv.innerHTML = tooltip;
-        toolTipDiv.style.top = e.pageY + "px";
-        toolTipDiv.style.left = e.pageX + "px";
+        let winX = e.clientX;           //x position mouse
+        let winY = e.clientY;           //y position mouse
+        let inWid = window.innerWidth;  
+        let inHt = window.innerHeight;
+        if (winY < (.5 * inHt) && (winX < (.5 * inWid))) {       //quad II
+            toolTipDiv.style.top = e.pageY + "px";
+            toolTipDiv.style.left = e.pageX + "px";
+        }
+        else if (winY > (.5 * inHt) && (winX < (.5 * inWid))) {  //quad III
+            toolTipDiv.style.top = e.pageY - 75 + "px";  //offset up
+            toolTipDiv.style.left = e.pageX + "px";
+        }
+        else if (winY < (.5 * inHt) && (winX > (.5 * inWid))) {  //quad I
+            toolTipDiv.style.top = e.pageY + "px";
+            toolTipDiv.style.left = e.pageX - 250 + "px";  //offset left
+        }
+        else {                                                   //quad IV
+            toolTipDiv.style.top = e.pageY - 75 + "px";    //offset up
+            toolTipDiv.style.left = e.pageX - 250 + "px";  //offset left
+        }
+        
         fadeIn(toolTipDiv);
     };
 
@@ -169,9 +184,6 @@ let setUpToolTip = function () {
                 displayTooltip(e, that);
             }, 400);
         });
-        elem.addEventListener("mouseover", function(e) {
-            displayTooltip(e, this);
-        })
         elem.addEventListener("mouseleave", function (e) {
             clearTimeout(timeout);
             fadeOut(toolTipDiv);
