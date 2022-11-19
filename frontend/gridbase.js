@@ -1,9 +1,9 @@
-/**  Creates a grid from a randomly filled array 
- *   Chris
- *   version 1.0.0  10/1/2022
- *           2.0.0  10/7/2022 rerenders rather than reloads window
- *           2.1.0  11/8/2022 agents have ID and status
- *           3.0.0  11/16/2022 renders using multiple divs instead of one
+/*  Creates a grid from a randomly filled array 
+ *  Chris
+ *  version 1.0.0  10/1/2022
+ *          2.0.0  10/7/2022 rerenders rather than reloads window
+ *          2.1.0  11/8/2022 agents have ID and status
+ *          3.0.0  11/16/2022 renders using multiple divs instead of one
  *
  *   class RandomAgent:  creates agent with random ID and status 
  *   function randomID():  returns randomized 15 digit agent ID
@@ -14,7 +14,11 @@
  *   function toColor(stat):  takes in status and returns color 
  *   function createBoard():  creates initial grid
  *   function createEle():  creates an element
- *   function updateColors(array):  updates grid with changing status colors */
+ *   function updateColors(array):  updates grid with changing status colors 
+ *   function setUpToolTip:  displays agent ID tooltip
+ *   function displayTooltip:  calculates agent ID tooltip position
+ *   function fadeOut:  fades out agent ID tooltip
+ *   function fadeIn:  fades in agent ID tooltip  */
  
 const ROWS = 80;
 const COLUMNS = 125
@@ -26,6 +30,7 @@ const statusType = ["logged out", "available", "on voice call",
         "after call work", "on preview task"];
 const gridArea = document.querySelector('.grid');
 const output = createEle(gridArea, 'div', 'output');
+let tool = false;
 
 class RandomAgent {
     constructor(agID, agStatus) {
@@ -90,7 +95,6 @@ function toColor(stat) {
 }
 
 function createBoard() {
-    //let a_ray = [...array];
     const total = ROWS * COLUMNS;
     for (let i = 0; i < total; i++) {
         const temp = createEle(output, 'div', 'box');
@@ -116,13 +120,13 @@ function updateColors(array) {
 
 let setUpToolTip = function () {
     let tooltip = "",
-    toolTipDiv = document.querySelector(".tooltip"),
-    toolTipElements = Array.from(document.querySelectorAll(".box")),
-    timer;
+        toolTipDiv = document.querySelector(".tooltip"),
+        toolTipElements = Array.from(document.querySelectorAll(".box")),
+        timer;
 
     let displayTooltip = function(e, obj) {
         tooltip = "agent: " + idsNew[obj.id].agID 
-            //+ " status: " + idsNew[obj.id].agStatus;
+            //+ " status: " + idsNew[obj.id].agStatus;  needed later???
         toolTipDiv.innerHTML = tooltip;
         let winX = e.clientX;           //x position mouse
         let winY = e.clientY;           //y position mouse
@@ -144,9 +148,9 @@ let setUpToolTip = function () {
             toolTipDiv.style.top = e.pageY - 75 + "px";    //offset up
             toolTipDiv.style.left = e.pageX - 250 + "px";  //offset left
         }
-        
-        fadeIn(toolTipDiv);
-    };
+        if (tool)
+            fadeIn(toolTipDiv);
+    };    
 
     let fadeOut = function(element) {
         let op = 1;
@@ -176,23 +180,32 @@ let setUpToolTip = function () {
         }, 10);
     };
 
+    //listens for mouse entering or leaving agent div
     toolTipElements.forEach(function(elem) {
         let timeout;
-        elem.addEventListener("mouseenter", function(e) {
-            let that = this;
-            timeout = setTimeout(function() {
-                displayTooltip(e, that);
-            }, 400);
-        });
-        elem.addEventListener("mouseleave", function (e) {
-            clearTimeout(timeout);
-            fadeOut(toolTipDiv);
-        })
+        if (tool) {
+            elem.addEventListener("mouseenter", function(e) {
+                let that = this;
+                timeout = setTimeout(function() {
+                    displayTooltip(e, that);
+                }, 400);
+            });
+            elem.addEventListener("mouseleave", function (e) {
+                clearTimeout(timeout);
+                fadeOut(toolTipDiv);
+            })
+        }
     })
+
+    //changes value of tool based on checkbox status
+    const checkBox = document.querySelector('#idCheck');
+    checkBox.addEventListener('change', () => {
+        if (checkBox.checked) {
+            tool = true;
+        } else 
+            tool = false;
+    });
 };
-
-
-
 
 //render grid
 let idsNew = []
