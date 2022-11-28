@@ -4,7 +4,8 @@
      version 1.0.0  10/1/2022 
              1.1.0  11/8/2022   added pop-up modal window 
              1.2.0  11/17/2022  added full-screen mode  
-             1.3.0  11/18/2022  added checkbox for agent ID  -->
+             1.3.0  11/18/2022  added checkbox for agent ID 
+             1.4.0  11/27/2022 added agent legend -->
 
 <html lang = "en" dir = "ltr">
     <head>
@@ -12,7 +13,6 @@
         <title> Grid Page </title>
 
         <!--Added css file-->
-        <link rel="stylesheet" href="gridstyle.css" type="text/css">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -32,37 +32,44 @@
                 <button data-close-button class="close-button">&times;</button>
             </div>
 
-            <!--Modal body display options for "Charts" and "Logout"-->
+            <!--Modal body display options for "Charts" and "Logout". Has option to toggle agent id-->
             <div class="modal-body">
                 <a href="Pie_Chart(DummyData).html">
                     <button type="buttonmod" class="buttonmod">Charts</button>
                 </a>
                 <br>
+                <br>
                 <a href="index.html">
                     <button type="buttonmod" class="buttonmod">Logout</button>
                 </a>
                 <br>
-                <input type="checkbox" id="idCheck">Agent ID</input>
+                <br>
+                <input type="checkbox" id="idCheck" name="id-check" value="Id">
+                <label for="idCheck">Agent ID</label>
+                <!--Agent legend-->
+                <div class="my-legend">
+                    <div class="legend-title">Agent Key</div>
+                    <div class="legend-scale">
+                      <ul class="legend-labels">
+                        <li><span style="background: fuchsia;"></span>Logged out</li>
+                        <li><span style="background: yellow;"></span>Available</li>
+                        <li><span style="background: orange;"></span>On voice call</li>
+                        <li><span style="background: lime;"></span>After call work</li>
+                        <li><span style="background: cyan;"></span>On preview task</li>
+                      </ul>
+                    </div>
+                </div>
             </div>
         </div>
-
         <!--Overlay displays as the background when modal window is open-->
         <div id="overlay"></div>
 
         <!------------------------------Grid----------------------------------->
-        
         <div class="grid" data-modal-target="#modal"></div>
         <div class="tooltip"></div>
         <script src="gridbase.js" ></script>
         <!------------------------------Added Scripts-------------------------->
         <script defer src="gridmenu.js"></script>
-        <script type="module" 
-            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-                >
-        </script>
-        <script nomodule 
-            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js">
-        </script>
         <script> document.addEventListener("dblclick", () => {
 			document.documentElement.requestFullscreen().catch((e) => {
 				console.log(e);

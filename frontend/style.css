@@ -1,8 +1,10 @@
 /*  style sheet for MANYC project
-    Chris, Ashar, and Yahir
-    version 1.0.0  9/14/2022  
-    version 1.1.0  10/19/2022  updated for gridbase.js and 
-                               added background to login pages*/
+Chris, Ashar, and Yahir
+version 1.0.0  9/14/2022  
+version 1.1.0  10/19/2022  updated for gridbase.js and 
+added background to login pages
+version 1.2.0 11/28/2022 modified modal window 
+elements and fixed alignment*/
 
 @charset "ISO-8859-1";
 
@@ -79,7 +81,7 @@
    font-size: 12;
 }
 
-button{
+.def_button{
    background: transparent;
    border: 1px solid #fff;
    margin: 35px 0 10px;
@@ -121,4 +123,194 @@ button{
    margin: 20px;
    z-index: 99999;
    border-radius: 15px;
+}
+
+/*modal window*/
+.modal {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%) scale(0);
+   transition: 200ms ease-in-out;
+   border: 1px solid black;
+   border-radius: 10px;
+   z-index: 10;
+   background-color: #CECBCC;
+   width: 500px;
+   max-width: 80%;
+}
+
+.modal.active {
+   transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+   padding: 10px 15px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   border-bottom: 1px solid black;
+}
+
+.modal-header .title {
+   font-size: 1.25rem;
+   font-weight: bold;
+}
+
+.modal-header .close-button {
+   cursor: pointer;
+   border: none;
+   outline: none;
+   background: none;
+   font-size: 1.25rem;
+   font-weight: bold;
+}
+
+.modal-body {
+   padding: 20px 15px;
+}
+
+#overlay {
+   position: fixed;
+   opacity: 0;
+   transition: 200ms ease-in-out;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: rgba(0, 0, 0, .5);
+   pointer-events: none;
+}
+
+#overlay.active {
+   opacity: 1;
+   pointer-events: all;
+}
+
+.buttonmod {
+   background-color: #F84E89;
+   border-radius: 8px;
+   border-style: none;
+   box-sizing: border-box;
+   color: #FFFFFF;
+   cursor: pointer;
+   display: inline-block;
+   font-family: "Haas Grot Text R Web";
+   font-size: 16px;
+   font-weight: 500;
+   height: 40px;
+   width: 120px;
+   line-height: 20px;
+   list-style: none;
+   margin: 0;
+   outline: none;
+   padding: 10px 16px;
+   position: relative;
+   text-align: center;
+   text-decoration: none;
+   transition: color 100ms;
+   vertical-align: baseline;
+   user-select: none;
+   -webkit-user-select: none;
+   touch-action: manipulation;
+ }
+ 
+ .buttonmod:hover,
+ .buttonmod:focus {
+   background-color: #F082AC;
+ }
+
+/*legend*/
+.my-legend .legend-title {
+   text-align: center;
+   margin-bottom: 5px;
+   font-weight: bold;
+   font-size: 110%;
+}
+
+.my-legend .legend-scale ul {
+   margin: 0;
+   margin-bottom: 5px;
+   padding: 0;
+   float: right;
+   list-style: none;
+}
+
+.my-legend .legend-scale ul li {
+   font-size: 80%;
+   list-style: none;
+   margin-left: 0;
+   line-height: 18px;
+   margin-bottom: 4px;
+}
+
+.my-legend ul.legend-labels li span {
+   display: block;
+   float: left;
+   height: 16px;
+   width: 30px;
+   margin-right: 5px;
+   margin-left: 0;
+   border: 1px solid #999;
+}
+
+.my-legend {
+  position: absolute;
+  top: 45px;
+  left: 270px;
+  height: 8em;
+  width: 150px;
+  border: 2px solid black;
+  border-radius: .5em;
+  padding: 15px;
+  align-items: center;
+  margin: 1em;
+}
+
+/*Checkmark*/
+input[type=checkbox] + label {
+   display: block;
+   margin: 0.2em;
+   cursor: pointer;
+   padding: 0.2em;
+ }
+ 
+ input[type=checkbox] {
+   display: none;
+ }
+ 
+ input[type=checkbox] + label:before {
+   content: "\2714";
+   border: 0.1em solid #000;
+   border-radius: 0.2em;
+   display: inline-block;
+   width: 1em;
+   height: 1em;
+   padding-left: 0.2em;
+   padding-bottom: 0.3em;
+   margin-right: 0.2em;
+   vertical-align: bottom;
+   color: transparent;
+   transition: .2s;
+ }
+ 
+input[type=checkbox] + label:active:before {
+transform: scale(0);
+}
+
+input[type=checkbox]:checked + label:before {
+background-color: #F84E89;
+border-color: #F84E89;
+color: #fff;
+}
+
+input[type=checkbox]:disabled + label:before {
+transform: scale(1);
+border-color: #aaa;
+}
+
+input[type=checkbox]:checked:disabled + label:before {
+transform: scale(1);
+background-color: #fb8eb4;
+border-color: #fb8eb4;
 }
