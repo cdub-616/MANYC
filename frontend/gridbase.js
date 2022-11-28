@@ -20,19 +20,19 @@
  *   function fadeOut:  fades out agent ID tooltip
  *   function fadeIn:  fades in agent ID tooltip  */
  
-const ROWS = 80;
-const COLUMNS = 125
-const MAX_ID_DIG = 15
-const MAX_AGENTS = 10000
-const MAX_CHANGES = 1800
+const ROWS = 5//80;
+const COLUMNS = 10//125
+//const MAX_ID_DIG = 15
+//const MAX_AGENTS = 10000
+//const MAX_CHANGES = 1800
 const ONE_SEC = 1000
-const statusType = ["logged out", "available", "on voice call", 
-        "after call work", "on preview task"];
+//const statusType = ["logged out", "available", "on voice call", 
+//        "after call work", "on preview task"];
 const gridArea = document.querySelector('.grid');
 const output = createEle(gridArea, 'div', 'output');
 let tool = false;
 
-class RandomAgent {
+/*class RandomAgent {
     constructor(agID, agStatus) {
     this.agID = agID
     this.agStatus = agStatus
@@ -70,7 +70,7 @@ function updateCenter(array) {
         a_ray[index].agStatus = type
     }
     return a_ray
-}
+}*/
 
 function toColor(stat) {
     switch(stat) {
@@ -208,11 +208,23 @@ let setUpToolTip = function () {
 };
 
 //render grid
-let idsNew = []
-idsNew = newCenter()
+//let idsNew = []
+//idsNew = newCenter()
 createBoard();
 window.setInterval(function(){ 
-    setUpToolTip();
-    updateColors(idsNew);
-    idsNew = updateCenter(idsNew) //update agent statuses
+    //setUpToolTip();
+    //updateColors(idsNew);
+    //idsNew = updateCenter(idsNew) //update agent statuses
+    fetch("http://localhost:3000/data", {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      updateColors(data);
+    });
+    //setUpToolTip();
 }, ONE_SEC) //delay between renders
+
+/*fetch function will fetch all the data. The order in which data 
+ travels is (stored in database) --> (pulled to the web via get api) --> 
+ (this function fetching from the web using url)*/
