@@ -69,7 +69,8 @@ let setUpToolTip = function () {
     timer;
 
   let displayTooltip = function (e, obj) {
-    tooltip = "agent: " + idsNew[obj.id].agID;
+    tooltip = "agent: " + obj.id;//idsNew[obj.id].agID;
+    console.log(obj.id);
     //+ " status: " + idsNew[obj.id].agStatus;  needed later???
     toolTipDiv.innerHTML = tooltip;
     let winX = e.clientX; //x position mouse
@@ -157,10 +158,10 @@ window.setInterval(() => {
   })
     .then((res) => res.json())
     .then((data) => {
-        console.log(data);
+        //console.log(data);
       updateColors(data);
     });
-    //setUpToolTip();
+    setUpToolTip();
 }, ONE_SEC);
 
 /*fetch function will fetch all the data. The order in which data 
