@@ -4,8 +4,10 @@
  *          2.0.0  10/7/2022 rerenders rather than reloads window
  *          2.1.0  11/8/2022 agents have ID and status
  *          3.0.0  11/16/2022 renders using multiple divs instead of one
- *          4.0.0  11/25/2022 Removed all functions which were used to create random Agents
- *                            Displays actual data sent in via postman
+ *          4.0.0  11/25/2022 Removed all functions which were used to create 
+ *                            random Agents and displays actual data sent in via 
+ *                            postman
+ *          4.1.0  11/29/2022 updated tooltip for live grid
  *
  *   function toColor(stat):  takes in status and returns color
  *   function createBoard():  creates initial grid
@@ -15,8 +17,8 @@
  *   function fadeOut:  fades out agent ID tooltip
  *   function fadeIn:  fades in agent ID tooltip  */
 
-const ROWS = 80//5;   //original 80
-const COLUMNS = 125//10;//original 125
+const ROWS = 5;   //original 80
+const COLUMNS = 10;//original 125
 const ONE_SEC = 1000;
 const gridArea = document.querySelector(".grid");
 const output = createEle(gridArea, "div", "output");
@@ -69,9 +71,7 @@ let setUpToolTip = function () {
     timer;
 
   let displayTooltip = function (e, obj) {
-    tooltip = "agent: " + idsNew[obj.id].ids;//idsNew[obj.id].agID;
-    //+ " status: " + idsNew[obj.id].agStatus;  needed later???
-    console.log(idsNew);
+    tooltip = "agent: " + idsNew[obj.id].ids;
     toolTipDiv.innerHTML = tooltip;
     let winX = e.clientX; //x position mouse
     let winY = e.clientY; //y position mouse
@@ -151,7 +151,7 @@ let setUpToolTip = function () {
   });
 };
 
-let idsNew = [];
+let idsNew = [];  
 createBoard();
 window.setInterval(() => {
   fetch("http://localhost:3000/data", {
@@ -159,11 +159,7 @@ window.setInterval(() => {
   })
     .then((res) => res.json())
     .then((data) => {
-        //console.log(data);
-        //console.log(data[0].ids);
-        idsNew = [...data];
-        //console.log(data[0]);
-        //console.log(idsNew[0]);
+        idsNew = [...data]; 
       updateColors(data);
     });
     setUpToolTip();
