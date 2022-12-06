@@ -124,12 +124,11 @@ let setUpToolTip = function () {
         toolTipElements = Array.from(document.querySelectorAll(".box")),
         timer;
 
-    let displayTooltip = function(e, obj) {
+    let displayTooltip = (e, obj) => {
         tooltip = "agent: " + idsNew[obj.id].agID 
-            //+ " status: " + idsNew[obj.id].agStatus;  needed later???
         toolTipDiv.innerHTML = tooltip;
-        let winX = e.clientX;           //x position mouse
-        let winY = e.clientY;           //y position mouse
+        let winX = e.clientX;                                 //x position mouse
+        let winY = e.clientY;                                 //y position mouse
         let inWid = window.innerWidth;  
         let inHt = window.innerHeight;
         if (winY < (.5 * inHt) && (winX < (.5 * inWid))) {       //quad II
@@ -137,25 +136,25 @@ let setUpToolTip = function () {
             toolTipDiv.style.left = e.pageX + "px";
         }
         else if (winY > (.5 * inHt) && (winX < (.5 * inWid))) {  //quad III
-            toolTipDiv.style.top = e.pageY - 75 + "px";  //offset up
+            toolTipDiv.style.top = e.pageY - 75 + "px";          //offset up
             toolTipDiv.style.left = e.pageX + "px";
         }
         else if (winY < (.5 * inHt) && (winX > (.5 * inWid))) {  //quad I
             toolTipDiv.style.top = e.pageY + "px";
-            toolTipDiv.style.left = e.pageX - 250 + "px";  //offset left
+            toolTipDiv.style.left = e.pageX - 250 + "px";        //offset left
         }
         else {                                                   //quad IV
-            toolTipDiv.style.top = e.pageY - 75 + "px";    //offset up
-            toolTipDiv.style.left = e.pageX - 250 + "px";  //offset left
+            toolTipDiv.style.top = e.pageY - 75 + "px";          //offset up
+            toolTipDiv.style.left = e.pageX - 250 + "px";        //offset left
         }
         if (tool)
             fadeIn(toolTipDiv);
     };    
 
-    let fadeOut = function(element) {
+    let fadeOut = (element) => {
         let op = 1;
         if (!timer) {
-            timer = setInterval(function() {
+            timer = setInterval(() =>{
                 if (op <= 0.1) {
                     clearInterval(timer);
                     timer = null;
@@ -168,10 +167,10 @@ let setUpToolTip = function () {
         }
     };
 
-    let fadeIn = function(element) {
+    let fadeIn = (element) => {
         let op = 0.1;
         element.style.display = 'block';
-        let timer = setInterval(function () {
+        let timer = setInterval(() =>{
             if (op >= 1) {
                 clearInterval(timer);
             }
@@ -181,16 +180,16 @@ let setUpToolTip = function () {
     };
 
     //listens for mouse entering or leaving agent div
-    toolTipElements.forEach(function(elem) {
+    toolTipElements.forEach((elem) =>{
         let timeout;
         if (tool) {
-            elem.addEventListener("mouseenter", function(e) {
+            elem.addEventListener("mouseenter", (e) => {
                 let that = this;
-                timeout = setTimeout(function() {
+                timeout = setTimeout(() => {
                     displayTooltip(e, that);
                 }, 400);
             });
-            elem.addEventListener("mouseleave", function (e) {
+            elem.addEventListener("mouseleave", (e) => {
                 clearTimeout(timeout);
                 fadeOut(toolTipDiv);
             })
@@ -211,7 +210,7 @@ let setUpToolTip = function () {
 let idsNew = []
 idsNew = newCenter()
 createBoard();
-window.setInterval(function(){ 
+window.setInterval(() => { 
     setUpToolTip();
     updateColors(idsNew);
     idsNew = updateCenter(idsNew) //update agent statuses
