@@ -3,8 +3,8 @@ Chris, Ashar, and Yahir
 version 1.0.0  9/14/2022  
 version 1.1.0  10/19/2022: updated for gridbase.js and added background to login pages
 version 1.2.0 11/28/2022: modified modal window 
-version 1.3.0 12/5/2022: modified index.html elements
-elements and fixed alignment*/
+version 1.3.0 12/5/2022: modified index.html & login_error.html elements
+*/
 
 @charset "ISO-8859-1";
 
@@ -13,12 +13,21 @@ elements and fixed alignment*/
    padding: 0;
 }
 
-/*index.html and login_error.html*/
+/*index.html*/
 .bodycolor {
    background-color: #1f4172;
 }
 
-.container {
+#header-background {
+   width: 100%;
+   height: 280px;
+   background-image: url("././images/module-clouds-2x.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+
+
+.container-log {
    font-family: "Silka", sans-serif;
    font-weight: bold;
    color: #F84E89;
@@ -27,22 +36,22 @@ elements and fixed alignment*/
    justify-content: center;
 }
 
-.card{
+.card-log {
    position: absolute;
-   left: 100px;
-   top: 200px;
-   width: 500px;
-   height: 350px;
+   left: 70px;
+   top: 300px;
+   width: 855px;
+   height: 400px;
    box-shadow: 0 0 40px 40px rgba(0, 0, 0, .50);
 }
 
-.inner-box{
+.inner-box-log {
    position: relative;
    width: 100%;
    height: 100%;
 }
 
-.front, .back{
+.front-log, .back-log {
    position: absolute;
    width: 100;
    height: 100;
@@ -53,46 +62,46 @@ elements and fixed alignment*/
    backface-visibility: hidden;
 }
 
-.back{
+.back-log {
    transform: rotateY(180deg);
 }
 
-.card h2{
+.card-log h2 {
    font-family: "Silka", sans-serif;
    font-weight: bold;
-   font-size: 1.9rem;
+   font-size: 2.4rem;
    text-align: center;
    margin-bottom: 35px;
    position: relative;
    color: #F84E89;
 }
 
-.input{
-   width: 100%;
+.input {
    background-color: #F84E89;
    border: 1px solid #fff;
    margin: 6px 0;
-   height: 32px;
+   height: 45px;
+   width: 100%;
    border-radius: 20px;
-   padding: 0 10px;
+   padding: 0 100px;
    box-sizing: border-box;
    text-align: center;
    color: #fff;
 }
 
-::placeholder{
+::placeholder {
    color: #fff;
-   font-size: 14px;
+   font-size: 16px;
 }
 
-.def_button{
+.def_button {
    font-family: "Silka", sans-serif;
-   font-size: 14px;
+   font-size: 16px;
    background: transparent;
    border: 1px solid #fff;
    margin: 35px 0 10px;
-   height: 32px;
-   width: 70px;
+   height: 45px;
+   width: 85px;
    border-radius: 20px;
    padding: 0 10px;
    box-sizing: border-box;
@@ -109,18 +118,85 @@ elements and fixed alignment*/
 
 .labelstyle {
    position: absolute;
-   top: 245px;
-   left: 300px;
-   
+   top: 290px;
+   right: 55px;  
+}
+
+/*login_error.html*/
+.container-error {
+   font-family: "Silka", sans-serif;
+   font-weight: bold;
+   color: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.card-error {
+   width: 600px;
+   height: 350px;
+   box-shadow: 0 0 40px 40px rgba(0, 0, 0, .50);
+   background-color: #be4b49;
+}
+
+.inner-box-error {
+   position: relative;
+   width: 100%;
+   height: 100%;
+}
+
+.front-error, .back-error{
+   position: absolute;
+   width: 100;
+   height: 100;
+   background-position: center;
+   background-size: cover;
+   padding: 55px;
+   box-sizing: border-box;
+   backface-visibility: hidden;
+}
+
+.back-error {
+   transform: rotateY(180deg);
+}
+
+.card-error h2{
+   font-weight: normal;
+   font-size: 24px;
+   text-align: center;
+   margin-bottom: 20px;
+   color: #fff;
+}
+
+.def_button-error {
+   font-family: "Silka", sans-serif;
+   font-size: 16px;
+   background: transparent;
+   border: 1px solid #fff;
+   margin: 35px 0 10px;
+   height: 45px;
+   width: 150px;
+   border-radius: 20px;
+   padding: 0 10px;
+   box-sizing: border-box;
+   outline: none;
+   background-color: #4665b4;
+   color: #fff;
+   cursor: pointer;
+}
+
+.def_button-error:hover,
+.def_button-error:focus {
+  background-color: #1f4172;
 }
 
 /*Logo & rain*/
-.logo {
+.logo-five {
    position: absolute;
-   top: 80px;
-   right: 80px;
-   width: 400px;
-   height: 210px;
+   top: 180px;
+   right: 50px;
+   width: 500px;
+   height: 262px;
    background-image: url("././images/FIVN_BIG.png");
    background-position: center;
    -webkit-background-size: cover;
@@ -132,7 +208,7 @@ elements and fixed alignment*/
 
 .container2 {
    position: absolute;
-   top: 220px;
+   top: 380px;
    right: 100px;
   
 }

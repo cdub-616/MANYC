@@ -2,7 +2,7 @@
 <!-- Displays login page for MANYC project
      Ashar, Yahir
      version 1.0.0  9/27/2022
-	 version 1.1.0  12/5/2022 - added five9 logo and animated rain -->
+	 version 1.1.0  12/8/2022: added five9 logo, rain, & header -->
 <html>
 
     <head>
@@ -10,8 +10,10 @@
 	    <link rel="stylesheet" href="style.css">
     </head>
 	<body class="bodycolor">
+		<!-- Header background -->
+		<header id="header-background"></header>
 		<!-- Five9 logo and animated rain -->
-		<div class="logo"></div> 
+		<div class="logo-five"></div> 
 		<div class="container2">
 			<div class="rain">
 				<span style="--i:11"></span>
@@ -37,12 +39,12 @@
 			</div>
 		</div>
 	
-		<div class="container">
+		<div class="container-log">
 			<!-- div combines everything inside together 
 			 which makes it easier to format using css -->
-			<div class="card">
-				<div class="inner-box">
-					<div class="front">
+			<div class="card-log">
+				<div class="inner-box-log">
+					<div class="front-log">
 						<h2> Login</h2>
 						<input id="username" type="username" class="input" required 
 						   placeholder="Username">
