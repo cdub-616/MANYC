@@ -124,7 +124,7 @@ let setUpToolTip = function () {
         toolTipElements = Array.from(document.querySelectorAll(".box")),
         timer;
 
-    let displayTooltip = (e, obj) => {
+    let displayTooltip = function(e, obj) {
         tooltip = "agent: " + idsNew[obj.id].agID 
         toolTipDiv.innerHTML = tooltip;
         let winX = e.clientX;                                 //x position mouse
@@ -151,10 +151,10 @@ let setUpToolTip = function () {
             fadeIn(toolTipDiv);
     };    
 
-    let fadeOut = (element) => {
+    let fadeOut = function(element) {
         let op = 1;
         if (!timer) {
-            timer = setInterval(() =>{
+            timer = setInterval(function() {
                 if (op <= 0.1) {
                     clearInterval(timer);
                     timer = null;
@@ -167,10 +167,10 @@ let setUpToolTip = function () {
         }
     };
 
-    let fadeIn = (element) => {
+    let fadeIn = function(element) {
         let op = 0.1;
         element.style.display = 'block';
-        let timer = setInterval(() =>{
+        let timer = setInterval(function() {
             if (op >= 1) {
                 clearInterval(timer);
             }
@@ -183,13 +183,13 @@ let setUpToolTip = function () {
     toolTipElements.forEach((elem) =>{
         let timeout;
         if (tool) {
-            elem.addEventListener("mouseenter", (e) => {
+            elem.addEventListener("mouseenter", function(e) {
                 let that = this;
                 timeout = setTimeout(() => {
                     displayTooltip(e, that);
                 }, 400);
             });
-            elem.addEventListener("mouseleave", (e) => {
+            elem.addEventListener("mouseleave", function(e) {
                 clearTimeout(timeout);
                 fadeOut(toolTipDiv);
             })
@@ -210,7 +210,7 @@ let setUpToolTip = function () {
 let idsNew = []
 idsNew = newCenter()
 createBoard();
-window.setInterval(() => { 
+window.setInterval(function() { 
     setUpToolTip();
     updateColors(idsNew);
     idsNew = updateCenter(idsNew) //update agent statuses
