@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- Displays page of pie chart, curently using placeholder data,
+     Maliacki
+     version 1.0.0  11/9/2022  -->
+
+<!--
+    Js code to display agent status's in pie chart format.
+    This fetches data and refereshes pie every second
+    Ashar Javid
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pie Chart</title>
+  <style type="text/css">
+    .chartBox {
+      width: 900px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .def_button {
+      font-family: "Silka", sans-serif;
+      font-size: 16px;
+      background: transparent;
+      border: 1px solid #fff;
+      margin: 35px 0 10px;
+      height: 45px;
+      width: 85px;
+      border-radius: 20px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      outline: none;
+      background-color: rgba(255, 99, 132, 1);
+      color: #fff;
+      cursor: pointer;
+    }
+    .def_button:hover,
+    .def_button:focus {
+      background-color: #da0556;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="chartBox">
+    <canvas id="myChart"></canvas>
+  </div>
+  <div style="text-align: center; position:fixed; left:80px; top:20px;">
+    <a href="grid.html">
+      <button class="def_button" style="width: 100px; height: 40px;">
+        Return to Grid</button>
+    </a>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    //These variables are used to divy up the status's when running through the data
+    var loggedOut = 0;
+    var available = 0;
+    var onVoiceCall = 0;
+    var afterCallWork = 0;
+    var onPreviewTask = 0;
+    //this runs through the data and increments the appropriate variables
+    function calculateStatus(array) {
+      for (var i = 0; i < array.length; i++) {
+        switch (array[i]) {
+          case "logged out":
+            loggedOut++;
+            break;
+          case "available":
+            available++;
+            break;
+          case "on voice call":
+            onVoiceCall++;
+            break;
+          case "after call work":
+            afterCallWork++;
+            break;
+          case "on preview task":
+            onPreviewTask++;
+            break;
+        }
+      }
+      return [loggedOut, available, onVoiceCall, afterCallWork, onPreviewTask];
+    }
+    //takes in the raw data with id and status. Then create a new array with status only
+    function statusOnly(array) {
+      for (let i = 0; i < array.length; i++) {
+        data1[i] = array[i].status;
+      }
+      return data1;
+    }
+    //Zero's out the divy variables after each window referesh. If the variables are not zero's out
+    //it will just keep on incrementing after each window referesh.
+    function zeroOut() {
+      loggedOut = 0;
+      available = 0;
+      onVoiceCall = 0;
+      afterCallWork = 0;
+      onPreviewTask = 0;
+    }
+    //pie chart dependacy
+    const data = {
+      labels: ['Logged Out', 'Available', 'On Voice Call', 'After Call Work', 'On Preview Task',],
+      datasets: [{
+        label: '# of Agents in current status',
+        data: [0, 0, 0, 0, 0],
+        backgroundColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)'
+        ],
+        borderWidth: 1
+      }]
+    };
+    //pie chart dependancy
+    const config = {
+      type: 'pie',
+      data,
+      options: {}
+    };
+    //creates pie chart based on dependancies
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+    //This contains all the necessary function to keep and update the pie chart in 5 second intervals
+    let data1 = [];
+    window.setInterval(() => {
+      fetch("http://localhost:3000/data", {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          data1 = statusOnly(data);
+          var status = calculateStatus(data1);
+          myChart.config.data.datasets[0].data = status;
+          myChart.update();
+          zeroOut();
+        });
+    }, 1000);
+  </script>
+</body>
+
+</html>
