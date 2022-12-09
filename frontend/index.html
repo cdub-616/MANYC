@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!-- Displays login page for MANYC project
-     Ashar, Yahir
+     Ashar, Yahir, Chris
      version 1.0.0  9/27/2022
-	 version 1.1.0  12/8/2022: added five9 logo, rain, & header -->
+	 version 1.1.0  12/8/2022: added five9 logo, rain, & header 
+							   added enter key for button click-->
 <html>
-
     <head>
 	    <title>Login</title>
 	    <link rel="stylesheet" href="style.css">
@@ -46,16 +46,16 @@
 				<div class="inner-box-log">
 					<div class="front-log">
 						<h2> Login</h2>
-						<input id="username" type="username" class="input" required 
-						   placeholder="Username">
+						<input id="username" type="username" class="input" 
+							required placeholder="Username">
 						<!-- input tag takes the input from the user -->
 					
-						<input id="password" type="password" class="input" required 
-						   placeholder="Password">
-						
-						<button type="def_button" class="def_button" onclick="validate()">
-						   Submit</button>
-						
+						<input id="password" type="password" class="input" 
+							required placeholder="Password" 
+							onkeypress="enter(event)">
+						<button id="def_button" type="def_button" 
+							class="def_button" onclick="validate()">Submit
+							</button>
 						<input type="checkbox" id="remember"> 
 						<label class="labelstyle" for="remember">Remember Me</label>
 						<script src = "login.js"></script>
