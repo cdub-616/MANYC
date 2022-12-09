@@ -2,14 +2,15 @@
 <!-- Displays the login error page
 	 Yahir
 	 Ver 1.0.0 10/11/2022 
-	 ver 1.1.0 12/8/2022-->
+	 ver 1.0.1 12/8/2022  Enter key clicks button  -->
+
 <html>
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="style.css" type="text/css">
 	<title>Login Error</title>
 </head>
-<body class="bodycolor">
+<body class="bodycolor" onkeypress="enterError(event)">
 	<!-- Header background -->
 	<header id="header-background"></header>
 	<div class="container-error">	
@@ -25,9 +26,11 @@
 					<!-- Button redirects back to Login.html page-->
 					<div style="text-align: center;">
 						<a href="index.html">
-						<button class="def_button-error">Back to Login
+						<button id="def_button-error" class="def_button-error"
+							>Back to Login
 						</button>
 						</a>
+						<script src = "login_error.js"></script>
 					</div>
 				</div>
 			</div>

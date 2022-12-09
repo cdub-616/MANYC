@@ -1,8 +1,7 @@
 /**  Creates a pop-up on grid page with legend and buttons
  *   Yahir
  *   version 1.0.0  11/9/2022
- *
- */
+ *           1.0.1  12/8/2022  activates on mouse right click */
 
 const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
