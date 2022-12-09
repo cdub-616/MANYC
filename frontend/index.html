@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <!-- Displays login page for MANYC project
-     Ashar
-     version 1.0.0  9/27/2022 -->
+     Ashar, Yahir, Chris
+     version 1.0.0  9/27/2022
+	 version 1.1.0  12/8/2022: added five9 logo, rain, & header 
+							   added enter key for button click-->
 <html>
-
     <head>
 	    <title>Login</title>
 	    <link rel="stylesheet" href="style.css">
     </head>
-
-    <body>
-	    <div class="container">
-		    <!-- div combines everything inside together 
-	             which makes it easier to format using css -->
-		    <div class="card">
-			    <div class="inner-box">
-				    <div class="front">
-					    <h2> Login</h2>
-					    <input id="username" type="username" class="input" 
-						    required placeholder="Username">
-
-					    <!-- input tag takes the input from the user -->
-					    <input id="password" type="password" class="input" 
-						    required placeholder="Password">
-					    <button type="button" class="btn" onclick="validate()">
-					        Submit</button>
-					    <input type="checkbox"> <span> Remember me</span>
-					    <script src="login.js"></script>
-				    </div>
-			    </div>
-		    </div>
-	    </div>
-    </body>
+	<body class="bodycolor">
+		<!-- Header background -->
+		<header id="header-background"></header>
+		<!-- Five9 logo and animated rain -->
+		<div class="logo-five"></div> 
+		<div class="container2">
+			<div class="rain">
+				<span style="--i:11"></span>
+				<span style="--i:12"></span>
+				<span style="--i:10"></span>
+				<span style="--i:14"></span>
+				<span style="--i:18"></span>
+				<span style="--i:16"></span>
+				<span style="--i:19"></span>
+				<span style="--i:20"></span>
+				<span style="--i:19"></span>
+				<span style="--i:10"></span>
+				<span style="--i:16"></span>
+				<span style="--i:14"></span>
+				<span style="--i:18"></span>
+				<span style="--i:11"></span>
+				<span style="--i:13"></span>
+				<span style="--i:15"></span>
+				<span style="--i:12"></span>
+				<span style="--i:17"></span>
+				<span style="--i:13"></span>
+				<span style="--i:15"></span>
+			</div>
+		</div>
+	
+		<div class="container-log">
+			<!-- div combines everything inside together 
+			 which makes it easier to format using css -->
+			<div class="card-log">
+				<div class="inner-box-log">
+					<div class="front-log">
+						<h2> Login</h2>
+						<input id="username" type="username" class="input" 
+							required placeholder="Username">
+						<!-- input tag takes the input from the user -->
+					
+						<input id="password" type="password" class="input" 
+							required placeholder="Password" 
+							onkeypress="enter(event)">
+						<button id="def_button" type="def_button" 
+							class="def_button" onclick="validate()">Submit
+							</button>
+						<input type="checkbox" id="remember"> 
+						<label class="labelstyle" for="remember">Remember Me</label>
+						<script src = "login.js"></script>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

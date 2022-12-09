@@ -106,6 +106,7 @@ let setUpToolTip = function () {
           timer = null;
           element.style.opacity = 0;
           element.style.display = "none";
+
         }
         element.style.opacity = op;
         op -= op * 0.1;
