@@ -3,115 +3,151 @@
      Maliacki
      version 1.0.0  11/9/2022  -->
 
+<!--
+    Js code to display agent status's in pie chart format.
+    This fetches data and refereshes pie every second
+    Ashar Javid
+-->
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="style.css">
-  
-    <title>Pie Chart</title>
-
-    <style>
-        body {
-            background-color: rgb(50, 50, 255);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-          
-        #agent-pie-chart-container {
-            display: flex;
-            align-items: center;
-        }
-          
-        #agent-pie-chart {
-            background: conic-gradient(fuchsia 0.00% 25.07%,
-                lime 25.07% 34.56%, orange 34.56% 64.70%,
-                yellow 64.70% 80.00%, cyan 80.00%);
-            border-radius: 50%;
-            width: 500px;
-            height: 500px;
-        }
-          
-        #legend {
-            margin-left: 20px;
-            background-color: white;
-            padding: 5px;
-        }
-          
-        .entry {
-            display: flex;
-            align-items: center;
-        }
-          
-        .entry-color {
-            height: 15px;
-            width: 15px;
-        }
-          
-        .entry-text {
-            margin-left: 5px;
-        }
-          
-        #color-on-voice-call {
-            background-color: orange;
-        }
-          
-        #color-after-call-work {
-            background-color: yellow;
-        }
-          
-        #color-available {
-            background-color: lime;
-        }
-          
-        #color-on-preview-task {
-            background-color: cyan;
-        }
-          
-        #color-logged-out {
-            background-color: fuchsia;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pie Chart</title>
+  <style type="text/css">
+    .chartBox {
+      width: 900px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .def_button {
+      font-family: "Silka", sans-serif;
+      font-size: 16px;
+      background: transparent;
+      border: 1px solid #fff;
+      margin: 35px 0 10px;
+      height: 45px;
+      width: 85px;
+      border-radius: 20px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      outline: none;
+      background-color: rgba(255, 99, 132, 1);
+      color: #fff;
+      cursor: pointer;
+    }
+    .def_button:hover,
+    .def_button:focus {
+      background-color: #da0556;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Agent Status</h1>
-
-    <!-- Static Chart -->
-    <div id="agent-pie-chart-container">
-        <div id="agent-pie-chart"></div>
-        <div id="legend">
-            <div class="entry">
-                <div id="color-logged-out" class="entry-color"></div>
-                <div class="entry-text">Logged Out</div>
-            </div>
-            <div class="entry">
-                <div id="color-available" class="entry-color"></div>
-                <div class="entry-text">Available</div>
-            </div>
-            <div class="entry">
-                <div id="color-on-voice-call" class="entry-color"></div>
-                <div class="entry-text">On Voice Call</div>
-            </div>
-            <div class="entry">
-                <div id="color-after-call-work" class="entry-color"></div>
-                <div class="entry-text">After Call Work</div>
-            </div>
-            <div class="entry">
-                <div id="color-on-preview-task" class="entry-color"></div>
-                <div class="entry-text">On Preview Task</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Button that returns to grid -->
-    <div style="text-align: center; position:fixed; left:80px; top:20px;">
-        <a href="grid.html">
-            <button class="def_button" style="width: 100px; height: 40px;">
-                Return to Grid</button>
-        </a>
-    </div>
+  <div class="chartBox">
+    <canvas id="myChart"></canvas>
+  </div>
+  <div style="text-align: center; position:fixed; left:80px; top:20px;">
+    <a href="grid.html">
+      <button class="def_button" style="width: 100px; height: 40px;">
+        Return to Grid</button>
+    </a>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    //These variables are used to divy up the status's when running through the data
+    var loggedOut = 0;
+    var available = 0;
+    var onVoiceCall = 0;
+    var afterCallWork = 0;
+    var onPreviewTask = 0;
+    //this runs through the data and increments the appropriate variables
+    function calculateStatus(array) {
+      for (var i = 0; i < array.length; i++) {
+        switch (array[i]) {
+          case "logged out":
+            loggedOut++;
+            break;
+          case "available":
+            available++;
+            break;
+          case "on voice call":
+            onVoiceCall++;
+            break;
+          case "after call work":
+            afterCallWork++;
+            break;
+          case "on preview task":
+            onPreviewTask++;
+            break;
+        }
+      }
+      return [loggedOut, available, onVoiceCall, afterCallWork, onPreviewTask];
+    }
+    //takes in the raw data with id and status. Then create a new array with status only
+    function statusOnly(array) {
+      for (let i = 0; i < array.length; i++) {
+        data1[i] = array[i].status;
+      }
+      return data1;
+    }
+    //Zero's out the divy variables after each window referesh. If the variables are not zero's out
+    //it will just keep on incrementing after each window referesh.
+    function zeroOut() {
+      loggedOut = 0;
+      available = 0;
+      onVoiceCall = 0;
+      afterCallWork = 0;
+      onPreviewTask = 0;
+    }
+    //pie chart dependacy
+    const data = {
+      labels: ['Logged Out', 'Available', 'On Voice Call', 'After Call Work', 'On Preview Task',],
+      datasets: [{
+        label: '# of Agents in current status',
+        data: [0, 0, 0, 0, 0],
+        backgroundColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)'
+        ],
+        borderWidth: 1
+      }]
+    };
+    //pie chart dependancy
+    const config = {
+      type: 'pie',
+      data,
+      options: {}
+    };
+    //creates pie chart based on dependancies
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+    //This contains all the necessary function to keep and update the pie chart in 5 second intervals
+    let data1 = [];
+    window.setInterval(() => {
+      fetch("http://localhost:3000/data", {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          data1 = statusOnly(data);
+          var status = calculateStatus(data1);
+          myChart.config.data.datasets[0].data = status;
+          myChart.update();
+          zeroOut();
+        });
+    }, 1000);
+  </script>
 </body>
+
+
 </html>

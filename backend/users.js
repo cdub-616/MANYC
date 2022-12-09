@@ -9,7 +9,7 @@ router.use(express.json());
 const db = require('./db_connection');
 
 //routing the database connection file so we can query the data
-router.get('/', (req, res) => {
+router.get('/data', (req, res) => {
     db.query('select * from employee_changes',(err, result) => {
         if(err){
             res.send("cannot get data from database, check get api");
