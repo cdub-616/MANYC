@@ -5,7 +5,7 @@
 
 <!--
     Js code to display agent status's in pie chart format.
-    This fetches data in 10 sec intervals
+    This fetches data and refereshes pie every second
     Ashar Javid
 -->
 <!DOCTYPE html>
@@ -23,6 +23,26 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .def_button {
+      font-family: "Silka", sans-serif;
+      font-size: 16px;
+      background: transparent;
+      border: 1px solid #fff;
+      margin: 35px 0 10px;
+      height: 45px;
+      width: 85px;
+      border-radius: 20px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      outline: none;
+      background-color: rgba(255, 99, 132, 1);
+      color: #fff;
+      cursor: pointer;
+    }
+    .def_button:hover,
+    .def_button:focus {
+      background-color: #da0556;
+    }
   </style>
 </head>
 
@@ -30,7 +50,13 @@
   <div class="chartBox">
     <canvas id="myChart"></canvas>
   </div>
-
+  <div style="text-align: center; position:fixed; left:80px; top:20px;">
+    <a href="grid.html">
+      <button class="def_button" style="width: 100px; height: 40px;">
+        Return to Grid</button>
+    </a>
+  </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     //These variables are used to divy up the status's when running through the data
@@ -121,7 +147,6 @@
         });
     }, 1000);
   </script>
-  <script src=""></script>
 </body>
 
 </html>
