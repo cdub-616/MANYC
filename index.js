@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 
 //this is creating route to user.js file where all CRUD functions are located
-const usersRoutes = require("./backend/users"); //is not being used in this version
+const usersRoutes = require("./backend/users"); //not being used in this version
 
 //this utilizes all of the files from the frontend folder
 app.use(express.static('frontend'));
