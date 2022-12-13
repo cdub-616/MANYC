@@ -17,8 +17,6 @@
 
  function validate()
 {
-	//Saving for back up
-
 	var username=document.getElementById("username").value;
 	var password=document.getElementById("password").value;
 	if (username =="username" && password=="password")
@@ -29,34 +27,4 @@
 		{
 		window.location.href = "login_error.html";
 		}
-	
-	/*const mysql = require("mysql");
-	var db = mysql.createConnection({
-		host:'localhost',
-		user:'root',
-		password:'password',
-		database:'employees'
-	});
-	var username=document.getElementById("username").value;
-	var password=document.getElementById("password").value;
-	
-	switch (username) {
-		case 'ids': 
-			window.location.href = "login_error.html";
-			break;
-		case 'username': 
-			window.location.href = "grid.html";
-			break;
-		default: 
-			window.location.href = "login_error.html";
-		
-	}
-		
-	switch (password) {
-		case 'password':
-			window.location.href = "grid.html";
-			break;
-		default:
-			window.location.href = "login_error.html";
-	}*/	
 }
