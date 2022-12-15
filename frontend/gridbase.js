@@ -19,8 +19,8 @@
  *   function fadeOut:  fades out agent ID tooltip
  *   function fadeIn:  fades in agent ID tooltip  */
 
-const ROWS = 80;
-const COLUMNS = 125;
+const ROWS = 80;  //5 for 50, 80 for 10,000
+const COLUMNS = 125;  //10 for 50, 125 for 10,000
 const ONE_SEC = 1000;
 const gridArea = document.querySelector(".grid");
 const output = createEle(gridArea, "div", "output");
